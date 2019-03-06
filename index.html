@@ -273,6 +273,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/计算机三级/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wu Rendi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Recorder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/06/计算机三级/" itemprop="url">嵌入式系统开发技术摘要</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T16:44:47+08:00">
+                2019-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  14.3k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  52 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          嵌入式系统开发技术前言：写来给计算机三级整理用的，虽然意义不是很大。
+[TOC]第一章：嵌入式系统概论1.1嵌入式系统及其应用1.1.1嵌入式系统  嵌入式计算机系统的简称，广泛应用于各个领域，它几乎无处不在。  概念：嵌入式系统是以应用为中心，以计算机技术为基础，软硬件可裁剪，适应应用系统对功能、
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/06/计算机三级/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -375,44 +533,18 @@
       
         
           
-            <h1 id="Effective-C-浏览过程"><a href="#Effective-C-浏览过程" class="headerlink" title="Effective C++浏览过程"></a><em>Effective C++</em>浏览过程</h1><hr>
-<p>[TOC]</p>
-<h2 id="条款01：视C-为语言联邦"><a href="#条款01：视C-为语言联邦" class="headerlink" title="条款01：视C++为语言联邦"></a>条款01：视C++为语言联邦</h2><p>1.C：C++是以C为基础的语言。<br>2.Object-Oriented C++：C++中面向对象的内容。<br>3.Template C++：C++中泛型编程的内容。<br>4.STL：C++中的标准库。</p>
-<h2 id="条款02：尽量用const，enum，inline来替换-include"><a href="#条款02：尽量用const，enum，inline来替换-include" class="headerlink" title="条款02：尽量用const，enum，inline来替换#include"></a>条款02：尽量用const，enum，inline来替换#include</h2><ul>
-<li>对于单纯常量，最好用const或者enum来代替#include</li>
-<li>对于宏定义（Marco），最好改用inline函数（template inline）替换#include</li>
-</ul>
-<h2 id="条款03：尽量使用const"><a href="#条款03：尽量使用const" class="headerlink" title="条款03：尽量使用const"></a>条款03：尽量使用const</h2><ul>
-<li>如果关键字const出现在星号左边，则被指物是常量。</li>
-<li>如果关键字const出现在星号右边，则被指针是常量。</li>
-<li>STL中如果需要声明一个’T* const指针‘，则使用const_iterator。</li>
-<li>成员函数其常量性的不同，也可以被重载 。</li>
-</ul>
-<h2 id="条款04：确定对象在使用前已被初始化"><a href="#条款04：确定对象在使用前已被初始化" class="headerlink" title="条款04：确定对象在使用前已被初始化"></a>条款04：确定对象在使用前已被初始化</h2><ul>
-<li>初始化和赋值并不一样，比如构造函数中初始化发生在进入构造函数本体（即赋值语句）之前。所以构造函数最好使用成员初值列(member initalization list)，而非赋值操作(assignment)。其成员的初始化顺序与声明顺序相同。</li>
-<li>为内置型对象（如int,double）进行手工初始化，因为C++不保证初始化它们。</li>
-</ul>
-<h2 id="条款05：了解C-隐式编写并调用了哪些函数"><a href="#条款05：了解C-隐式编写并调用了哪些函数" class="headerlink" title="条款05：了解C++隐式编写并调用了哪些函数"></a>条款05：了解C++隐式编写并调用了哪些函数</h2><p>+编译器会暗自给class创建default构造函数，copy构造函数，copy assignment操作符，以及析构函数。</p>
-<h2 id="条款06：如果不想使用编译器自动生成的函数，就应该明确拒绝"><a href="#条款06：如果不想使用编译器自动生成的函数，就应该明确拒绝" class="headerlink" title="条款06：如果不想使用编译器自动生成的函数，就应该明确拒绝"></a>条款06：如果不想使用编译器自动生成的函数，就应该明确拒绝</h2><ul>
-<li>可以将相应的成员函数声明为private来拒绝编译器自动提供的功能。</li>
-</ul>
-<h2 id="条款07：为多态基类声明virtual析构函数"><a href="#条款07：为多态基类声明virtual析构函数" class="headerlink" title="条款07：为多态基类声明virtual析构函数"></a>条款07：为多态基类声明virtual析构函数</h2><ul>
-<li>只有当class包含至少一个virtual函数时，才给它声明一个virtual析构函数。</li>
-<li>如果class的设计目的不是作为base class使用或者具备多态性时(polymorphically)，就不该声明析构函数。</li>
-</ul>
-<h2 id="条款08：别让异常逃离析构函数"><a href="#条款08：别让异常逃离析构函数" class="headerlink" title="条款08：别让异常逃离析构函数"></a>条款08：别让异常逃离析构函数</h2><ul>
-<li>不能让析构函数吐出异常，不然会带来“过早结束程序”或者“发生不明确行为”的风险。</li>
-<li>如果客户需要对某个函数运行期间抛出的异常做出反应，那么class应该提供一个普通函数（而非析构函数）执行该操作。</li>
-</ul>
-<h2 id="条款09：绝不要在构造和析构函数中调用virtual函数"><a href="#条款09：绝不要在构造和析构函数中调用virtual函数" class="headerlink" title="条款09：绝不要在构造和析构函数中调用virtual函数"></a>条款09：绝不要在构造和析构函数中调用virtual函数</h2><ul>
-<li>在构造和析构（连同它们调用的所有函数）中不要调用virtual函数，因为这类调用不会下降至derived class（派生类）。</li>
-</ul>
-<h2 id="条款10：令operator-返回一个-reference-to-this"><a href="#条款10：令operator-返回一个-reference-to-this" class="headerlink" title="条款10：令operator= 返回一个 reference to *this"></a>条款10：令operator= 返回一个 reference to *this</h2><ul>
-<li>令赋值（assignment）操作符返回一个reference to *this ，这个协议被所有内置和标准程序库提供的类型如string，vector等等共同遵守。</li>
-</ul>
-<h2 id="条款11：在operator中处理“自我赋值”"><a href="#条款11：在operator中处理“自我赋值”" class="headerlink" title="条款11：在operator中处理“自我赋值”"></a>条款11：在operator中处理“自我赋值”</h2><p>+</p>
-
-          
+          Effective C++浏览过程
+[TOC]
+条款01：视C++为语言联邦1.C：C++是以C为基础的语言。2.Object-Oriented C++：C++中面向对象的内容。3.Template C++：C++中泛型编程的内容。4.STL：C++中的标准库。
+条款02：尽量用const，enum
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/05/test/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -561,17 +693,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/05/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -649,7 +779,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -662,7 +792,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -859,5 +989,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
 </html>

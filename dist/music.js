@@ -15,7 +15,7 @@ const ap = new APlayer({
         {
             name: '光になる',
             artist: 'Goose house',
-            url: 'http://music.163.com/song/media/outer/url?id=35617246.mp3',
+            url: 'http://music.163.com/song/media/outer/url?id=29732992.mp3',
             cover: 'https://pic.xiami.net/images/album/img52/91952/10147433001416992941.jpg?x-oss-process=image/resize,limit_0,s_410,m_fill',
             lrc: '/dist/光るなら-Goose house.lrc',
             theme: '#ebd0c2'

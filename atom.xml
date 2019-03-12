@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-11T14:21:30.607Z</updated>
+  <updated>2019-03-12T03:31:30.789Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/12/%E9%87%87%E6%91%98%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2019/03/12/采摘机器人项目总结/</id>
+    <published>2019-03-12T02:50:27.351Z</published>
+    <updated>2019-03-12T03:31:30.789Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="苹果自动采摘机器人项目总结"><a href="#苹果自动采摘机器人项目总结" class="headerlink" title="苹果自动采摘机器人项目总结"></a>苹果自动采摘机器人项目总结</h1><p>前言：研究生期间老板交给我的主要项目了，就算代码写得再怎么烂，总得留点记录以供之后回忆。</p><h2 id="硬件组成"><a href="#硬件组成" class="headerlink" title="硬件组成"></a>硬件组成</h2><p><img src="/2019/03/12/采摘机器人项目总结/小车.jpg" alt="小车"></p><p>图中部件分别为：</p><ol><li>末端执行器 （中间嵌有摄像头）</li><li>Festo 气动推杆 </li><li>小臂关节 </li><li>大臂关节 </li><li>台达伺服电机 </li><li>腰部关节 </li><li>台达 A2伺服驱动器 </li><li>移动小车</li></ol><p>其中Festo气动通过OPC通信连接，台达电机通过串口通信连接。</p><h2 id="软件组成"><a href="#软件组成" class="headerlink" title="软件组成"></a>软件组成</h2><p>软件部分上位机部分用MFC框架编写，运行在工控机的WindowsXP系统上，有使用opencv视觉库和OPC通信库。其具体运作逻辑如下所示：(虽然看起来逻辑简单，但是有好多细节问题没法表示)</p><div id="flowchart-0" class="flow-chart"></div><h2 id="重要的细节点"><a href="#重要的细节点" class="headerlink" title="重要的细节点"></a>重要的细节点</h2><p>整个工程一共有三个并行的线程，其中主线程1负责整体逻辑的控制，一个子线程2负责摄像头的读取与苹果的识别并在人机界面显示，一个子线程3负责使用电机控制机械臂完成末端执行器和苹果的对准。</p><ul><li>其中在主线程1中使用三个定时器实现对气动的控制和整体逻辑的控制。<ol><li>定时器1：控制气动推出、抓手闭合和割刀启动。</li><li>定时器2：持续地读取气动推杆的绝对位置，从气动初始化之后一直运行，直到程序结束。</li><li>定时器3：控制抓手松开、电机线程重整的。<br>（定时器的开关由一系列状态标志位控制）</li></ol></li><li>负责苹果识别的子线程2完成摄像头对图像的读取，苹果的识别（为整个流程提供目标中心坐标ex，ey），和画面的显示。</li><li>负责电机控制的子线程3读取苹果的坐标(ex,ey)来实现抓手的位置校正。</li></ul><p>整体系统中不同线程中公用的资源有一系列状态的标志位和目标的中心点坐标（ex，ey），并没有冲突的地方，所以没有用到锁，也就没有死锁的问题。</p><p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: 开始自动采摘e=>end: 采摘结束op1=>operation: 苹果识别获取坐标op2=>operation: 机械臂扫描op3=>operation: 气动推杆推出op4=>operation: 机械臂减速对准op5=>operation: 割刀启动，夹手夹住op6=>operation: 气动推杆收回，夹手松开cond1=>condition: 是否检测到苹果cond2=>condition: 光电门检测到物体或达到最大工作距离st->op2->cond1cond1(yes)->op4op4->op3op3->cond2cond2(yes)->op5cond2(no)->op3op5->op6op6->econd1(no)->op2</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;苹果自动采摘机器人项目总结&quot;&gt;&lt;a href=&quot;#苹果自动采摘机器人项目总结&quot; class=&quot;headerlink&quot; title=&quot;苹果自动采摘机器人项目总结&quot;&gt;&lt;/a&gt;苹果自动采摘机器人项目总结&lt;/h1&gt;&lt;p&gt;前言：研究生期间老板交给我的主要项目了，就算代码写得
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>计算机网络概述</title>

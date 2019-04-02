@@ -35,6 +35,14 @@ const ap = new APlayer({
             cover: 'http://p1.music.126.net/dcJQU4zfAqUcXHJa-3w3YQ==/19067730649022052.jpg?param=300x300',
             lrc: '/dist/大人の恋愛-大森靖子.lrc',
             theme: '#46718b'
+        },
+		{
+            name: '僕らの手には何もないけど、',
+            artist: 'RAM WIRE',
+            url: 'http://music.163.com/song/media/outer/url?id=32317208.mp3',
+            cover: 'http://p1.music.126.net/V1o9XDhAnI1ayWW5elJwFQ==/109951163338252165.jpg?param=300x300',
+            lrc: '/dist/僕らの手には何もないけど、-RAM WIRE.lrc',
+            theme: '#46718b'
         }
     ]
 });

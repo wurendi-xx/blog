@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Recorder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="面试题31：栈的压入、弹出序列 题目：输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如，序列{1,2,3,4,5}是某栈的压栈序列，序列{4,5,3,2,1}是该栈序列对于的一个弹出序列，但{4,3,5,1,2}就不可能是该压栈序列的弹出序列。 比如压入序列{1,2,3,4,5}，弹出序列{4,5,3,2,1}。    步骤 操">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recorder">
+<meta property="og:url" content="http://yoursite.com/2019/06/19/#剑指offer习题学习过程31-40/index.html">
+<meta property="og:site_name" content="Recorder">
+<meta property="og:description" content="面试题31：栈的压入、弹出序列 题目：输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如，序列{1,2,3,4,5}是某栈的压栈序列，序列{4,5,3,2,1}是该栈序列对于的一个弹出序列，但{4,3,5,1,2}就不可能是该压栈序列的弹出序列。 比如压入序列{1,2,3,4,5}，弹出序列{4,5,3,2,1}。    步骤 操">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-19T07:01:55.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Recorder">
+<meta name="twitter:description" content="面试题31：栈的压入、弹出序列 题目：输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如，序列{1,2,3,4,5}是某栈的压栈序列，序列{4,5,3,2,1}是该栈序列对于的一个弹出序列，但{4,3,5,1,2}就不可能是该压栈序列的弹出序列。 比如压入序列{1,2,3,4,5}，弹出序列{4,5,3,2,1}。    步骤 操">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/19/#剑指offer习题学习过程31-40/">
+
+
+
+
+
+  <title> | Recorder</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Recorder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/19/#剑指offer习题学习过程31-40/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wu Rendi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Recorder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T15:01:54+08:00">
+                2019-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  4.5k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  20 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="面试题31：栈的压入、弹出序列"><a href="#面试题31：栈的压入、弹出序列" class="headerlink" title="面试题31：栈的压入、弹出序列"></a>面试题31：栈的压入、弹出序列</h2><blockquote>
+<p>题目：输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如，序列{1,2,3,4,5}是某栈的压栈序列，序列{4,5,3,2,1}是该栈序列对于的一个弹出序列，但{4,3,5,1,2}就不可能是该压栈序列的弹出序列。</p>
+<p>比如压入序列{1,2,3,4,5}，弹出序列{4,5,3,2,1}。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>操作</th>
+<th>栈</th>
+<th>弹出数字</th>
+<th>步骤</th>
+<th>操作</th>
+<th>栈</th>
+<th>弹出数字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>压入1</td>
+<td>1</td>
+<td></td>
+<td>6</td>
+<td>弹出</td>
+<td>1,2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>压入2</td>
+<td>1,2</td>
+<td></td>
+<td>7</td>
+<td>压入5</td>
+<td>1,2,5</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>压入3</td>
+<td>1,2,3</td>
+<td></td>
+<td>8</td>
+<td>弹出</td>
+<td>1,2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>压入4</td>
+<td>1,2,3,4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>t弹出</td>
+<td>1,2,3</td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>思路：从弹出序列来看，如果下一个弹出的数字正好是栈顶数字，那么直接弹出；如果不在栈顶，就一直压栈直到遇到栈顶数字，如果所有数压栈结束还没有找到弹出数字，就不是该序列的弹出序列。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPopOrder</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>* pushOrder,<span class="keyword">const</span> <span class="keyword">int</span>* popOrder,<span class="keyword">int</span> length)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> result = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(length &gt; <span class="number">0</span> &amp;&amp; popOrder != <span class="literal">nullptr</span> &amp;&amp; pushOrder != <span class="literal">nullptr</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span>* nextPush = pushOrder;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span>* nextPop = popOrder;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; tmpStack;</span><br><span class="line">        <span class="keyword">while</span>(nextPop - popOrder &lt; length)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(!tmpStack.empty() || tmpStack.top() != *nextPop)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(nextPush - pushOrder == length)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">            	tmpStack.push(*nextPush);</span><br><span class="line">            </span><br><span class="line">            	nextPush++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//一直找不到弹出数字时跳出</span></span><br><span class="line">            <span class="keyword">if</span>(tmpStack.top() != *nextPop)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">//相等时弹出</span></span><br><span class="line">            <span class="keyword">else</span>                </span><br><span class="line">            &#123;</span><br><span class="line">                tmpStack.pop();</span><br><span class="line">            	nextPop++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//当压入数列和辅助栈都为空，完成所有弹出</span></span><br><span class="line">        <span class="keyword">if</span>(tmpStack.empty() &amp;&amp; nextPop - popOrder == length)</span><br><span class="line">            result = <span class="literal">true</span>;        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题32：从上到下打印二叉树（广度优先）"><a href="#面试题32：从上到下打印二叉树（广度优先）" class="headerlink" title="面试题32：从上到下打印二叉树（广度优先）"></a>面试题32：从上到下打印二叉树（广度优先）</h2><blockquote>
+<p>题目一：不分行从上到下打印二叉树</p>
+<p>从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。</p>
+</blockquote>
+<p>思路：用队列实现节点的打印。每次打印一个节点的时候，如果该节点有子节点，则把子节点放到一个队列的末尾，再将从队列头部去除下一个节点。重复前面的操作直至完成打印。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printBinaryTreeFromTopToBottom</span><span class="params">(binaryTreeNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)<span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">//辅助队列</span></span><br><span class="line">    <span class="built_in">deque</span>&lt;binaryTreeNode*&gt; dequeTreeNode;</span><br><span class="line">    </span><br><span class="line">    dequeTreeNode.push_back(root);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(dequeTreeNode.size() != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//如果有子节点，则保存到尾部</span></span><br><span class="line">        <span class="keyword">if</span>(dequeTreeNode.front()-&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">            dequeBinaryTreeNode.push_back(dequeTreeNode.front()-&gt;left);</span><br><span class="line">        <span class="keyword">if</span>(dequeTreeNode.front()-&gt;right != <span class="literal">nullptr</span>)</span><br><span class="line">            dequeBinaryTreeNode.push_back(dequeTreeNode.front()-&gt;right);</span><br><span class="line">        <span class="comment">//打印头部节点并弹出</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;dequeTreeNode.top();</span><br><span class="line">        dequeTreeNode.pop_front();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>题目二：分行从上到下打印二叉树</p>
+<p>从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到每一行。</p>
+</blockquote>
+<p>思路：和第一题相似，多出两个变量，一个变量表示再当前层中还没有打印的节点数，另一个变量表示下一层节点的数目。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printBinaryTreeFromTopToBottom</span><span class="params">(binaryTreeNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)<span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">deque</span>&lt;binaryTreeNode*&gt; dequeTreeNode;</span><br><span class="line">    </span><br><span class="line">    dequeTreeNode.push_back(root);</span><br><span class="line">    <span class="keyword">int</span> curCount = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> nexCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(dequeTreeNode.size() != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(dequeTreeNode.front()-&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            dequeBinaryTreeNode.push_back(dequeTreeNode.front()-&gt;left);</span><br><span class="line">            nexCount ++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(dequeTreeNode.front()-&gt;right != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            dequeBinaryTreeNode.push_back(dequeTreeNode.front()-&gt;right);</span><br><span class="line">            nexCount ++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;dequeTreeNode.top();</span><br><span class="line">        dequeTreeNode.pop_front();</span><br><span class="line">        curCount--;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(curCount == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            curCount = nexCount;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            nexCount = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>题目三：之字形打印二叉树。</p>
+<p>即第一层从左到右打印，第二层从右到左打印，以此类推。</p>
+</blockquote>
+<p>思路：需要定义两个栈，一个栈用来保存奇数层，一个栈用来保存偶数层。如果时奇数层，则先保存左节点再保存右节点（奇数层的下一个层偶数层需要从右到左打印）。如果时偶数层，则先保存右节点，再保存左节点（偶数层的下一个奇数层需要从左到右打印）。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(binaryTreeNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)<span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">stack</span>&lt;binaryTreeNode*&gt; level[<span class="number">2</span>];</span><br><span class="line">    level[<span class="number">0</span>].push(root);</span><br><span class="line">    <span class="keyword">int</span> cur = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> next = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(!level[<span class="number">0</span>].empty() || !level[<span class="number">1</span>].empty())</span><br><span class="line">    &#123;</span><br><span class="line">        binaryTreeNode* tmpNode = level[cur].top();</span><br><span class="line">        level[cur].pop();</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;tmpNode-&gt;value;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(cur == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(tmpNode-&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">                level[cur].push(tmpNode-&gt;left);</span><br><span class="line">            <span class="keyword">if</span>(tmpNode-&gt;right != <span class="literal">nullptr</span>)</span><br><span class="line">                level[cur].push(tmpNode-&gt;right);            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cur == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(tmpNode-&gt;right != <span class="literal">nullptr</span>)</span><br><span class="line">                level[cur].push(tmpNode-&gt;right);</span><br><span class="line">            <span class="keyword">if</span>(tmpNode-&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">                level[cur].push(tmpNode-&gt;left);            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(level[cur].empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            <span class="comment">//用来实现0和1的交替赋值</span></span><br><span class="line">            cur = <span class="number">1</span> - cur;</span><br><span class="line">            next = <span class="number">1</span> - next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题33：二叉搜索树的后序遍历序列"><a href="#面试题33：二叉搜索树的后序遍历序列" class="headerlink" title="面试题33：二叉搜索树的后序遍历序列"></a>面试题33：二叉搜索树的后序遍历序列</h2><blockquote>
+<p>题目：输入一个整数数组，判断该数组是不是某二叉搜索树的后续遍历结果。假设输入数组中数字互不相同。</p>
+</blockquote>
+<p>思路：后序遍历：left-&gt;right-&gt;root。先 从最后找到根节点，比根节点小的就是左节点，大的就是右节点。递归直到不再产生左右子树即只剩一个根节点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isSquenceOfBTS</span><span class="params">(<span class="keyword">int</span> input[],<span class="keyword">int</span> length)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(length == <span class="number">0</span> || input == <span class="literal">nullptr</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> root = input[length<span class="number">-1</span>];</span><br><span class="line">    <span class="comment">//找左节点</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(;i &lt; length<span class="number">-1</span> ;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(root &lt; input[i])</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找右节点，并且判断右节点是不是大于根节点</span></span><br><span class="line">    <span class="keyword">int</span> j = i+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;j &lt; length<span class="number">-1</span> ;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(root &gt; input[i])</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> left = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(i &gt; <span class="number">0</span>)</span><br><span class="line">        left = isSquenceOfBTS(input,i);</span><br><span class="line">     <span class="keyword">bool</span> right = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">//减去1是因为排除了根节点</span></span><br><span class="line">    <span class="keyword">if</span>(i &lt; length - <span class="number">1</span>)</span><br><span class="line">        right = isSquenceOfBTS(input + i,length - i - <span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> left &amp;&amp; right;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题34：二叉树中和为某一值的路径"><a href="#面试题34：二叉树中和为某一值的路径" class="headerlink" title="面试题34：二叉树中和为某一值的路径"></a>面试题34：二叉树中和为某一值的路径</h2><blockquote>
+<p>题目：输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的而节点形成一条路径。<br>思路：用前序遍历的方法访问所有节点，并把经过的路径累加起来并保存再一个栈中，当遇到叶节点并且累加值等于目标值时，打印路径所有的节点。否则继续访问父节点，并且回退时需要减去当前叶节点。其中由于需要打印整个节点，所以不能直接stack容器，可以选用vector容器代替。<br>解法：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">finePath</span><span class="params">(binaryTreeNode* root,<span class="keyword">int</span> target,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; path,<span class="keyword">int</span> curSum)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    curSum += root-&gt;value;</span><br><span class="line">    path.push_back(root-&gt;value);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> isLeaf = root-&gt;left == <span class="literal">nullptr</span> &amp;&amp; root-&gt;right == <span class="literal">nullptr</span>; </span><br><span class="line">    <span class="comment">//找到目标路径</span></span><br><span class="line">    <span class="keyword">if</span>(target == curSum &amp;&amp; isLeaf)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"path: "</span>;</span><br><span class="line">		for_each(input.begin(),input.end(),[](<span class="keyword">auto</span> tmp)&#123;<span class="built_in">cout</span>&lt;&lt;tmp&lt;&lt;<span class="string">'\t'</span>;&#125;);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果不是叶节点，就继续遍历子节点。</span></span><br><span class="line">    <span class="keyword">if</span>(root-&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        finePath(root-&gt;left,target,path,curSum);</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">if</span>(root-&gt;right != <span class="literal">nullptr</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        finePath(root-&gt;right,target,path,curSum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//是叶节点，但不是目标路径，返回父节点前删除当前节点</span></span><br><span class="line">    <span class="comment">//书中这里没有减去当前值</span></span><br><span class="line">    curSum -= root-&gt;value;</span><br><span class="line">    path.pop_back();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">finePath</span><span class="params">(binaryTreeNode* root,<span class="keyword">int</span> target)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)<span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; path;</span><br><span class="line">    <span class="keyword">int</span> curSum = <span class="number">0</span>;</span><br><span class="line">    findPath(root,target,path,curSum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="面试题35：复杂链表的复制"><a href="#面试题35：复杂链表的复制" class="headerlink" title="面试题35：复杂链表的复制"></a>面试题35：复杂链表的复制</h2><blockquote>
+<p>题目：实现函数complexListNode<em> clone(complexListNode</em> head)，复制一个复杂链表。再复杂链表中，每个节点除了有一个next指向下一个系欸但，还有一个sibling指针指向链表中的任意节点或者nullptr。节点的定义如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="class"><span class="keyword">struct</span> <span class="title">complexListNode</span></span></span><br><span class="line"><span class="class">&gt; &#123;</span></span><br><span class="line">&gt;     <span class="keyword">int</span> value;</span><br><span class="line">&gt;     complexListNode* next;</span><br><span class="line">&gt;     complexListNode* sibling;    </span><br><span class="line">&gt; &#125;;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>思路：三种方法：</p>
+<ol>
+<li>第一步先复制原始链表上的每一个节点，并用next链接起来。第二步设置每个节点的sibling指针。由于需要定位S的位置需要从原始链表的头节点开始找，找到后需要在复制链表中遍历到S，时间复杂度$O(n^2)$。</li>
+<li>第一步仍然是复制每一个节点N到N’，把&lt;N,N’&gt;的配对信息放到一个哈希表中。第二步还是设置复制链表中每个节点的sibling指针，由于有哈希表，能以O(1)的时间找到S’。</li>
+<li>第一步仍然复制每个节点，但是是把节点N’链接到N后面，然后原始链表中N的后一个元素链接到N’的后面。这样sibling指针就可以直接指向原始S的后面。</li>
+</ol>
+<p>解法3：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一步，复制N'</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cloneNode</span><span class="params">(complexListNode* head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    complexListNode* tmpNode = head;</span><br><span class="line">    <span class="keyword">if</span>(tmpNode != <span class="literal">nullptr</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        complexListNode* cloneNode = <span class="keyword">new</span> complexListNode();</span><br><span class="line">        cloneNode-&gt;value = tmpNode-&gt;value;</span><br><span class="line">        <span class="comment">//N的next链接到N'后面</span></span><br><span class="line">        cloneNode-&gt;next = tmpNode-&gt;next;</span><br><span class="line">        cloneNode-&gt;sibling = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="comment">//N'链接到N后面</span></span><br><span class="line">        tmpNode-&gt;next = cloneNode;</span><br><span class="line">        <span class="comment">//N迭代</span></span><br><span class="line">        tmpNode = cloneNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第二步，复制sibling指针</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cloneSiblingNode</span><span class="params">(complexListNode* head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    complexListNode* tmpNode = head;</span><br><span class="line">    <span class="keyword">while</span>(tmpNode != <span class="literal">nullptr</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//取得N'</span></span><br><span class="line">        complexListNode* cloneNode = tmpNode-&gt;next;</span><br><span class="line">        <span class="keyword">if</span>(cloneNode != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cloneNode-&gt;sibling = tmpNode-&gt;sibling-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        tmpNode = cloneNode-&gt;next;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第三步，拆分两个链表</span></span><br><span class="line"><span class="function">complexListNode* <span class="title">reconnectNode</span><span class="params">(complexListNode* head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    complexListNode* tmpNode = head;</span><br><span class="line">    complexListNode* cloneNode = <span class="literal">nullptr</span>;</span><br><span class="line">    complexListNode* cloneHead = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="comment">//初始化赋值链表的头部</span></span><br><span class="line">    <span class="keyword">if</span>(tmpNode != <span class="literal">nullptr</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cloneHead = tmpNode-&gt;next;</span><br><span class="line">        cloneNode = cloneHead;</span><br><span class="line">        tmpNode-&gt;next = cloneNode-&gt;next;</span><br><span class="line">        tmpNode = tmpNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(tmpNode != <span class="literal">nullptr</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//将复制指针节点相连</span></span><br><span class="line">        cloneNode-&gt;next = tmpNode-&gt;next;</span><br><span class="line">        <span class="comment">//复制指针迭代</span></span><br><span class="line">        cloneNode = cloneNode-&gt;next;</span><br><span class="line">        <span class="comment">//原始指针相连</span></span><br><span class="line">        tmpNode-&gt;next = cloneNode-&gt;next;</span><br><span class="line">        <span class="comment">//原始指针迭代</span></span><br><span class="line">        tmpNode = tmpNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cloneHead;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">listNode* <span class="title">complexListNodeClone</span><span class="params">(listNode* head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cloneNode(head);</span><br><span class="line">    reconnectNode(head);</span><br><span class="line">    listNode* result = reconnectNode(head);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题36：二叉搜索树与双向链表"><a href="#面试题36：二叉搜索树与双向链表" class="headerlink" title="面试题36：二叉搜索树与双向链表"></a>面试题36：二叉搜索树与双向链表</h2><blockquote>
+<p>题目：输入一课二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的节点，只能调整树中节点指针的指向。二叉树的定义如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="class"><span class="keyword">struct</span> <span class="title">binaryTreeNode</span></span></span><br><span class="line"><span class="class">&gt; &#123;</span></span><br><span class="line">&gt;     <span class="keyword">int</span> value;</span><br><span class="line">&gt;     binaryTreeNode* left;</span><br><span class="line">&gt;     binaryTreeNode* right;</span><br><span class="line">&gt; &#125;;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>思路：二叉树中左节点看作指向前面节点的指针，右节点看作指向后面节点的指针。由于要求转换后的链表是排序好的，所以需要中序遍历。其中链表用尾部指针来获取整个链表，因为left-&gt;root-&gt;right，每次访问root，与left做链表操作。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">binaryTreeNode* <span class="title">convertCore</span><span class="params">(binaryTreeNode* root,binaryTreeNode** lastListNode)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)<span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    binaryTreeNode* cur = root;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(root-&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">        <span class="keyword">return</span> convertCore(root-&gt;left,lastListNode);</span><br><span class="line">    <span class="comment">//中序遍历顺序</span></span><br><span class="line">    <span class="comment">//向前指针链接</span></span><br><span class="line">    cur-&gt;left = *lastListNode;</span><br><span class="line">    <span class="keyword">if</span>(*lastListNode != <span class="literal">nullptr</span>)</span><br><span class="line">        <span class="comment">//向后指针链接</span></span><br><span class="line">        (*lastListNode)-&gt;right = cur;</span><br><span class="line">    <span class="comment">//尾部指针迭代</span></span><br><span class="line">    *lastListNode = cur;    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(root-&gt;right != <span class="literal">nullptr</span>)</span><br><span class="line">        <span class="keyword">return</span> convertCore(root-&gt;right,lastListNode);    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">binaryTreeNode* <span class="title">convert</span><span class="params">(binaryTreeNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    binaryTreeNode* lastListNode = <span class="literal">nullptr</span>;    </span><br><span class="line">    convertCore(root,&amp;lastListNode);</span><br><span class="line">    <span class="comment">//lastListNode是链表的尾节点，需要再或者其头节点</span></span><br><span class="line">    binaryTreeNode* headListNode = lastListNode;    </span><br><span class="line">    <span class="keyword">while</span>(headListNode != <span class="literal">nullptr</span> &amp;&amp; headListNode-&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">        headListNode = headListNode-&gt;left;</span><br><span class="line">    <span class="keyword">return</span> headListNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题37：序列化二叉树"><a href="#面试题37：序列化二叉树" class="headerlink" title="面试题37：序列化二叉树"></a>面试题37：序列化二叉树</h2><blockquote>
+<p>题目：实现两个函数，分别用来序列化和反序列化二叉树</p>
+</blockquote>
+<p>思路：根据前序遍历的顺序来序列化二叉树，并且在遇到nullptr指针时，将其序列化为一个特殊字符（比如’$’），用来提示节点停止，两个节点间用’,’分割。</p>
+<p>反序列化就用前序遍历实现。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">binaryTreeToString</span><span class="params">(binaryTreeNode* root,<span class="built_in">string</span>&amp; output)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        output = output + <span class="string">"$,"</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    output = output + itos(root-&gt;value) + <span class="string">','</span>;</span><br><span class="line">    binaryTreeToString(root-&gt;left,output);</span><br><span class="line">    binaryTreeToString(root-&gt;right,output);    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stringToBinaryTree</span><span class="params">(binaryTreeNode** root,istream&amp; stream)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> item;</span><br><span class="line">    getline(stream,item,<span class="string">','</span>);</span><br><span class="line">    <span class="keyword">if</span>(item == <span class="string">'$'</span>)<span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(item &gt; <span class="string">'0'</span> &amp;&amp; item &lt; <span class="string">'9'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        root = <span class="keyword">new</span> binaryTreeNode(stoi(item));</span><br><span class="line">        stringToBinaryTree(&amp;((*root)-&gt;left),stream);</span><br><span class="line">        stringToBinaryTree(&amp;((*root)-&gt;right),stream);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题38：字符串的排列（排列问题，涉及8皇后）"><a href="#面试题38：字符串的排列（排列问题，涉及8皇后）" class="headerlink" title="面试题38：字符串的排列（排列问题，涉及8皇后）"></a>面试题38：字符串的排列（排列问题，涉及8皇后）</h2><blockquote>
+<p>题目：出入一个字符串，打印出该字符串中字符的所有排列。例如abc有abc、acb、bca、cab、cba六种。</p>
+</blockquote>
+<p>思路：将排列看出由两部分组成，一个字符和剩余字符。求排列其看做两步：</p>
+<ol>
+<li>求出所有可能在第一个位置的字符。</li>
+<li>固定第一个字符，然后求剩余字符的排列，直到只剩一个字符。</li>
+</ol>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArrange</span><span class="params">(<span class="keyword">char</span>* input,<span class="keyword">char</span>* pBegin)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(*pBegin == <span class="string">'\0'</span>)<span class="built_in">cout</span>&lt;&lt;input&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span>* charIterator = pBegin;*charIterator != <span class="string">'\0'</span>;charIterator++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">char</span> tmp = *charIterator;</span><br><span class="line">            *charIterator = *pBegin;</span><br><span class="line">            *pBegin = tmp;</span><br><span class="line"></span><br><span class="line">            printArrange(input,pBegin+<span class="number">1</span>);</span><br><span class="line">            <span class="comment">//交换之后需要复原给下一次迭代使用</span></span><br><span class="line">            tmp = *charIterator;</span><br><span class="line">            *charIterator = *pBegin;</span><br><span class="line">            *pBegin = tmp;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">	&#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArrange</span><span class="params">(<span class="keyword">char</span>* input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(input == <span class="literal">nullptr</span>)<span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">char</span>* pBegin = input;</span><br><span class="line">    printArrange(input,pBegin);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>题目：输入一个含有8个数字的的数组，判断有没有可能把这8个数字分别放到正方体的8个顶点上，使得正方体上三组相对的面上的4个顶点和都相等。</p>
+</blockquote>
+<p>思路：实际上就是求8个数组的所有排列，然后判断有没有符合$a_1+a_2+a_3+a_4 == a_5+a_6+a_7+a_8,a_1+a_3+a_5+a_7 == a_2+a_4+a_6+a_8,a_1+a_2+a_5+a_6 == a_3+a_4+a_7+a_8$的排列组合。可以用next_permutation来取得所有组合。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isCube</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sort(input.begin(),input.end());</span><br><span class="line">    <span class="keyword">while</span>(next_permutation(input.begin(),input.end()))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">bool</span> result = </span><br><span class="line">            (input[<span class="number">1</span>]+input[<span class="number">2</span>]+input[<span class="number">3</span>]+input[<span class="number">4</span>])</span><br><span class="line">            == (input[<span class="number">5</span>]+input[<span class="number">6</span>]+input[<span class="number">7</span>]+input[<span class="number">8</span>])</span><br><span class="line">            &amp;&amp; (input[<span class="number">1</span>]+input[<span class="number">3</span>]+input[<span class="number">5</span>]+input[<span class="number">7</span>])</span><br><span class="line">            == (input[<span class="number">2</span>]+input[<span class="number">4</span>]+input[<span class="number">6</span>]+input[<span class="number">8</span>])</span><br><span class="line">            &amp;&amp; (input[<span class="number">1</span>]+input[<span class="number">2</span>]+input[<span class="number">5</span>]+input[<span class="number">6</span>])</span><br><span class="line">            == (input[<span class="number">3</span>]+input[<span class="number">4</span>]+input[<span class="number">7</span>]+input[<span class="number">8</span>]);</span><br><span class="line">        <span class="keyword">if</span>(result == <span class="literal">true</span>)<span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>题目：8皇后问题（用排列解决）</p>
+</blockquote>
+<p>思路：定义一个数组index[8]，数组中第i行数组代表皇后所在的列数。先将其中的数字用0~7初始化，然后对其全排列。由于行数和列数肯定不想同，所以只要判断是否在同一条对角线上，即i-j == index[i]-index[j]或者j - i == index[i] -index[j]。</p>
+<p>解法（排列）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printQueen</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; queen = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;    </span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(next_permutation(queen.begin(),queen.end()))</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="keyword">bool</span> result = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">8</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>;j &lt; <span class="number">8</span>;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">bool</span> tmp = <span class="built_in">abs</span>(i - j) != <span class="built_in">abs</span>(queen[i] - queen[j]);</span><br><span class="line">				result = result &amp;&amp; tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="keyword">if</span>(result == <span class="literal">true</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			count++;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">8</span>;i++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp(<span class="number">8</span>,<span class="number">0</span>);</span><br><span class="line">				tmp[queen[i]] = <span class="number">1</span>;</span><br><span class="line">				for_each(tmp.begin(),tmp.end(),[](<span class="keyword">auto</span> a)&#123;<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">' '</span>;&#125;);</span><br><span class="line">				<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"count of queen: "</span>&lt;&lt;count;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解法（回溯）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">attack</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; input,<span class="keyword">int</span> row,<span class="keyword">int</span> col)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//i代表其他的皇后的行，input[i]就是列</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">bool</span> result = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">while</span>(!result &amp;&amp; i &lt; row)</span><br><span class="line">    &#123;</span><br><span class="line">        result = (input[i] == col) || </span><br><span class="line">            (<span class="built_in">abs</span>(i - row) == <span class="built_in">abs</span>( input[i] - col));</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印棋盘</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printQueen</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; input)</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">8</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; tmp(<span class="number">8</span>,<span class="string">'-'</span>);</span><br><span class="line">		tmp[input[i]] = <span class="string">'Q'</span>;</span><br><span class="line">		for_each(tmp.begin(),tmp.end(),[](<span class="keyword">auto</span> a)&#123;<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">' '</span>;&#125;);</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//q代表皇后的行数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">placeQueen</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; input,<span class="keyword">int</span> q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//i代表皇后的列数</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; <span class="number">8</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!attack(input,q,i))</span><br><span class="line">        &#123;</span><br><span class="line">			<span class="comment">//存储皇后位置</span></span><br><span class="line">            input[q] = i;            </span><br><span class="line">            <span class="keyword">if</span>(q == <span class="number">7</span>)</span><br><span class="line">                printQueen(input);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                placeQueen(input,q + <span class="number">1</span>); </span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; input(<span class="number">8</span>,<span class="number">0</span>);</span><br><span class="line">	placeQueen(input,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题39：数组中出现次数超过一半的数字"><a href="#面试题39：数组中出现次数超过一半的数字" class="headerlink" title="面试题39：数组中出现次数超过一半的数字"></a>面试题39：数组中出现次数超过一半的数字</h2><blockquote>
+<p>题目：数组中有一个数字出现次数超过数组长度的一半，请找出这个数字。</p>
+</blockquote>
+<p>思路：两种方法，一个会破坏数组，一个不会。</p>
+<ol>
+<li>利用快速排序的思想求出第k大的数字。由于超过长度的一半，所以中间的数字即为所求。</li>
+<li>由于出现次数超过长度的一半，换句话说就是其出现次数比其他所有的都多。可以设定两个数，一个保存当前遍历的数，另一个保存其出现的次数，如果遇到相同的就加1，不同的就减1，计数小于0就换下一个数字。可以保证最后出现次数大于0的数即为要找到的数。</li>
+</ol>
+<p>其中需要注意输入数组如果没有出现次数超过一半的数字，即在找到目标数字后检测其次数是否超过一半。</p>
+<p>解法2：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">checkAboveHalfTimes</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; input,<span class="keyword">int</span> target)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = input.size();</span><br><span class="line">    <span class="keyword">int</span> times = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> tmp : input)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(target == tmp)</span><br><span class="line">            times++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(times*<span class="number">2</span> &gt; length)<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxTimesNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = input.size();</span><br><span class="line">    <span class="keyword">if</span>(length &lt; <span class="number">1</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> result = input[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> times = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(times == <span class="number">1</span>)</span><br><span class="line">            result = input[i];</span><br><span class="line">        <span class="keyword">if</span>(input[i] == result)</span><br><span class="line">            times++;</span><br><span class="line">        <span class="keyword">else</span> times--;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(checkAboveHalfTimes(input,result))</span><br><span class="line">    	<span class="keyword">return</span> result;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题40：最小的k个数"><a href="#面试题40：最小的k个数" class="headerlink" title="面试题40：最小的k个数"></a>面试题40：最小的k个数</h2><blockquote>
+<p>题目：输入n个整数，找出其中最小的k个数。例如：输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4.</p>
+</blockquote>
+<p>思路：利用快速排序，partition函数，来解决问题。当位于选中数字左边k个数字就是最小的k个数字，其中这k个数字不是排序的。时间复杂度为O(n)。</p>
+<p>思路2：创建一个大小为k的数据容器来存储最小的k个数字。如果容器已有的数字小于k个，则直接加入。如果容器已满，则找到最大值与其对比，比最大值小的话就代替。<br>所以就需要一个能随时获得最大值的容器，并且删除和插入时间复杂度为O(logk)。比如堆，比如STL中的multiset（红黑树）。（优点处理海量数据，不会修改原数组）</p>
+<p>解法1：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getLeastKNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; input,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; output,<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = input.size();</span><br><span class="line">    <span class="keyword">if</span>(length == <span class="number">0</span> || k &lt; <span class="number">1</span>)<span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">    <span class="keyword">auto</span> start = input.begin();</span><br><span class="line">    <span class="keyword">auto</span> end = input.end();</span><br><span class="line">    <span class="keyword">int</span> target = input[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">//partiton返回第一个不满足p的迭代器</span></span><br><span class="line">    <span class="keyword">auto</span> index = partition(input.begin(),input.end(),[target](<span class="keyword">auto</span> tmp)&#123;<span class="keyword">return</span> tmp &lt; target;&#125;);</span><br><span class="line">        <span class="keyword">while</span>(distance(input.begin(),index) != k<span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(distance(input.begin(),index) &gt; k<span class="number">-1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                end = index - <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">auto</span> pivot = *next(start, distance(start,end)/<span class="number">2</span>);</span><br><span class="line">                index = partition(start,end,[pivot](<span class="keyword">auto</span> tmp)&#123;<span class="keyword">return</span> tmp &lt; pivot;&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">            &#123;</span><br><span class="line">                start = index + <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">auto</span> pivot = *next(start, distance(start,end)/<span class="number">2</span>);</span><br><span class="line">                index = partition(start,end,[pivot](<span class="keyword">auto</span> tmp)&#123;<span class="keyword">return</span> tmp &lt; pivot;&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; k;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        output.push_back(input[i]);</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解法2：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getLeastKNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; input,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; output,<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>,greater&lt;<span class="keyword">int</span>&gt;&gt; kNumber;</span><br><span class="line">    <span class="keyword">int</span> length = input.size();</span><br><span class="line">    <span class="keyword">if</span>(length &lt; k)<span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; k;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        kNumber.insert(input[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = k - <span class="number">1</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(input[i] &lt; *kNumber.begin())</span><br><span class="line">        &#123;</span><br><span class="line">            kNumber.erase(kNumber.begin());</span><br><span class="line">            kNumber.insert(input[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> iter = kNumber.begin();iter != kNumber.end();iter ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        output.push_back(*iter);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/19/#剑指offer习题学习过程21-30/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/19/#剑指offer习题学习过程41-50/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzAxMS8xOTU1Nw=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Wu Rendi">
+          <p class="site-author-name" itemprop="name">Wu Rendi</p>
+           
+              <p class="site-description motion-element" itemprop="description">被没有技术而留下泪水淹死的咸鱼</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wurendikunn@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+		
+		<link rel="stylesheet" href="/dist/APlayer.min.css">
+		<div id="aplayer"></div>
+		<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+		<script type="text/javascript" src="/dist/music.js"></script>
+		
+
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题31：栈的压入、弹出序列"><span class="nav-text">面试题31：栈的压入、弹出序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题32：从上到下打印二叉树（广度优先）"><span class="nav-text">面试题32：从上到下打印二叉树（广度优先）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题33：二叉搜索树的后序遍历序列"><span class="nav-text">面试题33：二叉搜索树的后序遍历序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题34：二叉树中和为某一值的路径"><span class="nav-text">面试题34：二叉树中和为某一值的路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题35：复杂链表的复制"><span class="nav-text">面试题35：复杂链表的复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题36：二叉搜索树与双向链表"><span class="nav-text">面试题36：二叉搜索树与双向链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题37：序列化二叉树"><span class="nav-text">面试题37：序列化二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题38：字符串的排列（排列问题，涉及8皇后）"><span class="nav-text">面试题38：字符串的排列（排列问题，涉及8皇后）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题39：数组中出现次数超过一半的数字"><span class="nav-text">面试题39：数组中出现次数超过一半的数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题40：最小的k个数"><span class="nav-text">面试题40：最小的k个数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+	  
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wu Rendi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

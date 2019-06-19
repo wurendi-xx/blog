@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Recorder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="面试题61：扑克牌中的顺子 题目：从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。2~10时数字本身，A为1，J为11，Q为12，K为13，而大小王可以看出任意数字。  思路：将扑克牌的背景抽象成计算机语言，把5张牌看成由5个数字组成的数组。大小王是特殊数字，不妨定义为0。为了判断这5个数字是不是连续的，最直观的方法是将其排序。其中由于大小王也就是0可以替换成任何一个数字，所以">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recorder">
+<meta property="og:url" content="http://yoursite.com/2019/06/19/#剑指offer习题学习过程61-66/index.html">
+<meta property="og:site_name" content="Recorder">
+<meta property="og:description" content="面试题61：扑克牌中的顺子 题目：从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。2~10时数字本身，A为1，J为11，Q为12，K为13，而大小王可以看出任意数字。  思路：将扑克牌的背景抽象成计算机语言，把5张牌看成由5个数字组成的数组。大小王是特殊数字，不妨定义为0。为了判断这5个数字是不是连续的，最直观的方法是将其排序。其中由于大小王也就是0可以替换成任何一个数字，所以">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-19T07:02:38.744Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Recorder">
+<meta name="twitter:description" content="面试题61：扑克牌中的顺子 题目：从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。2~10时数字本身，A为1，J为11，Q为12，K为13，而大小王可以看出任意数字。  思路：将扑克牌的背景抽象成计算机语言，把5张牌看成由5个数字组成的数组。大小王是特殊数字，不妨定义为0。为了判断这5个数字是不是连续的，最直观的方法是将其排序。其中由于大小王也就是0可以替换成任何一个数字，所以">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/19/#剑指offer习题学习过程61-66/">
+
+
+
+
+
+  <title> | Recorder</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Recorder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/19/#剑指offer习题学习过程61-66/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wu Rendi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Recorder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T15:02:37+08:00">
+                2019-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1.7k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  7 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="面试题61：扑克牌中的顺子"><a href="#面试题61：扑克牌中的顺子" class="headerlink" title="面试题61：扑克牌中的顺子"></a>面试题61：扑克牌中的顺子</h2><blockquote>
+<p>题目：从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。2~10时数字本身，A为1，J为11，Q为12，K为13，而大小王可以看出任意数字。</p>
+</blockquote>
+<p>思路：将扑克牌的背景抽象成计算机语言，把5张牌看成由5个数字组成的数组。大小王是特殊数字，不妨定义为0。<br>为了判断这5个数字是不是连续的，最直观的方法是将其排序。其中由于大小王也就是0可以替换成任何一个数字，所以可以用0去补齐数组中的空缺使其连续。<br>所以要做的有三个步骤：</p>
+<ol>
+<li>将数组排序</li>
+<li>统计0的个数</li>
+<li>统计排序后数组中相邻数字之间的空缺总数。如果空缺的总数小于或者等于0的个数，那么就是连续的。（需要注意的是如果有对子，则不可能连续）</li>
+</ol>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isContinuous</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = input.size();</span><br><span class="line">    <span class="keyword">if</span>(length != <span class="number">5</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    sort(input.begin(),input.end());</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> numberOfZero = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> numberOfGap = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//计算大小王的个数</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(input[i] == <span class="number">0</span>)</span><br><span class="line">            numberOfZero ++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = numberOfZero + <span class="number">1</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(input[i] == input[i<span class="number">-1</span>])</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        numberOfGap = input[i] - input[i<span class="number">-1</span>] <span class="number">-1</span>;        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (numberOfGap&gt;numberOfZero) ? <span class="literal">false</span> : <span class="literal">true</span>;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题62：圆圈中最后剩下的数字"><a href="#面试题62：圆圈中最后剩下的数字" class="headerlink" title="面试题62：圆圈中最后剩下的数字"></a>面试题62：圆圈中最后剩下的数字</h2><blockquote>
+<p>题目：0，1，····，n这n个数字排成一个个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。例如，0、1、2、3、4这5个数字，从数字0开始每次删除第3个数字，则删除的前4个数字依次是2、0、4、1，因此最后剩下的数字是3。</p>
+</blockquote>
+<p>思路：本题是约瑟夫环（Josephuse）问题，有两种解题方法：一种方法用环形链表模拟圆圈的经典算法；第二种算法是分析被删除数字的规律直接计算出剩下的数字。</p>
+<p>方法一：用list模拟环形链表，在遍历到末尾的时候把迭代器转到链表头部。</p>
+<p>解法： </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n,<span class="keyword">unsigned</span> <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( n &lt; <span class="number">1</span> || m &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; numbers;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        numbers.push_back(i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator current = numbers.begin();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(numbers.size() &gt; <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; m;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            current ++;</span><br><span class="line">            <span class="keyword">if</span>(current == numbers.end())</span><br><span class="line">                current = numbers.begin();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator next = ++current;</span><br><span class="line">        <span class="keyword">if</span>(next == numbers.end())</span><br><span class="line">            next = numbers.begin();</span><br><span class="line">        current--;</span><br><span class="line">        numbers.erase(current);</span><br><span class="line">        current = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> *(current);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法二：定义一个关于n和m的方程$f(n,m)$，表示每次在n个数字0，1，···，n-1中删除第m个数字最后剩下的数字。</p>
+<p>$$f(n,m)=<br>\begin{cases}<br>0&amp; \text{n=1}\<br>[f(n-1,m)+m]\%n&amp; \text{n&gt;1}<br>\end{cases}$$</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n,<span class="keyword">unsigned</span> <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( n &lt; <span class="number">1</span> || m &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> last = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i &lt;= n;i++)</span><br><span class="line">        last = (last+m)%i;</span><br><span class="line">    <span class="keyword">return</span> last;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题63：股票的最大利润"><a href="#面试题63：股票的最大利润" class="headerlink" title="面试题63：股票的最大利润"></a>面试题63：股票的最大利润</h2><blockquote>
+<p>题目：假设把某股票的价格按照时间先后顺序存储阿紫数组中，请问买卖该股票一次可能获得的最大利润是多少？例如，一只股票在某些时间节点的价格为{9,11,8,5,7,12,16,14}。如果我们能在价格为5的时候买入并在16时卖出，则能收获最大利润11。</p>
+</blockquote>
+<p>思路：最大利润实际就是求数组中所有数对的最大差值，可以在遍历到第i个数字的时候记住前i-1个数中的最小值，就可以获得当前的最高利润了。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxDiff</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = input.size();</span><br><span class="line">    <span class="keyword">if</span>(length &lt; <span class="number">1</span>)<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> min = input[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxDiff = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(input[i<span class="number">-1</span>] &lt; min)</span><br><span class="line">            min = input[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span>(input[i] - min &gt; maxDiff)</span><br><span class="line">            maxDiff = input[i] - min;        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxDiff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题64：求1-2-···-n"><a href="#面试题64：求1-2-···-n" class="headerlink" title="面试题64：求1+2+···+n"></a>面试题64：求1+2+···+n</h2><blockquote>
+<p>题目：求1+2+···+n，要求不能使用乘除法、for、while、if、else、switch、case等关键词和条件判断语句。</p>
+</blockquote>
+<p>思路：</p>
+<ol>
+<li>利用构造函数来实现循环：构造函数里写循环内容，数组实例化写循环次数。</li>
+<li>利用递归实现循环，其中判断使用虚函数和数组实现来结束递归。</li>
+<li>用函数指针来模拟虚函数（在纯C环境中）。</li>
+<li>利用模版来实现递归。</li>
+</ol>
+<p>2:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>;</span></span><br><span class="line">A *<span class="built_in">array</span>[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">array</span>[!!n]-&gt;sum(n<span class="number">-1</span>)+n;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum_Solution2</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    B b;</span><br><span class="line">    <span class="built_in">array</span>[<span class="number">0</span>] = &amp;a;</span><br><span class="line">    <span class="built_in">array</span>[<span class="number">1</span>] = &amp;b;</span><br><span class="line">    <span class="keyword">int</span> value = <span class="built_in">array</span>[<span class="number">1</span>]-&gt;sum(n);</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="title">int</span> <span class="params">(*fun)</span><span class="params">(<span class="keyword">unsigned</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">solution3_Teminator</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">sum_Solution3</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> fun f[<span class="number">2</span>] = &#123;solution3_Teminator,sum_Solution3&#125;;</span><br><span class="line">    <span class="keyword">return</span> n+f[!!n](n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">unsigned</span> <span class="keyword">int</span> n&gt;<span class="class"><span class="keyword">struct</span> <span class="title">sum_Solution4</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">enum</span> value&#123;N = sum_Solution4&lt;n - <span class="number">1</span>&gt;::N + n&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;&gt; <span class="class"><span class="keyword">struct</span> <span class="title">sum_Solution4</span>&lt;1&gt;</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">enum</span> value&#123; N = <span class="number">1</span>&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题65：不用加减乘除法做加法"><a href="#面试题65：不用加减乘除法做加法" class="headerlink" title="面试题65：不用加减乘除法做加法"></a>面试题65：不用加减乘除法做加法</h2><blockquote>
+<p>题目：写一个函数，求两个整数之和，要求在函数体内不能使用四则运算符号。</p>
+</blockquote>
+<p>思路：利用位运算，来模拟加法，分为三步。</p>
+<ol>
+<li>只做各位的相加不进位。</li>
+<li>做进位。</li>
+<li>将前面两个结果相加。</li>
+</ol>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum,carry;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        sum = num1 ^ num2;</span><br><span class="line">        carry = (num1 &amp; num2)&lt;&lt;<span class="number">1</span>;</span><br><span class="line">        num1 = sum;</span><br><span class="line">        num2 = carry;     </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//num2用来存储进位，并不断相加</span></span><br><span class="line">    <span class="keyword">while</span>(num2 != <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> num1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题66：构建乘积数组"><a href="#面试题66：构建乘积数组" class="headerlink" title="面试题66：构建乘积数组"></a>面试题66：构建乘积数组</h2><blockquote>
+<p>题目：给定一个数组$A[0,1,…,n-1]$，请构建一个数组$B[0,1,…,n-1]$，其中B的元素$B[i]=A[0]<em>A[1]</em>…<em>A[i-1]</em>A[i+1]<em>…</em>A[n-1]$。不能使用除法。</p>
+</blockquote>
+<p>思路：如果可以使用除法，就可以用数组所有数的乘积除以当前数（注意0的情况）。</p>
+<p>定义$C[i]=A[0]<em>A[1]</em>…<em>A[i-1]，D[i]=A[i+1]</em>…<em>A[n-2]</em>A[n-1]$。</p>
+<p>这两个数组可以用自上而下和自下而上的顺序计算出来。然后B数组就出来了。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">multiply</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; &amp;input,<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; &amp;output)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = input.size();</span><br><span class="line">    <span class="keyword">if</span>(length &lt; <span class="number">1</span>)<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    output.resize(length,<span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//tmpC存储的是C数组</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; tmpC(length,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        tmpC[i] = tmpC[i<span class="number">-1</span>]*input[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//tmpD存储的是D数组</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; tmpD(length,<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = length<span class="number">-2</span>;i &gt;= <span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        tmpD[i] = tmpD[i+<span class="number">1</span>]*input[i+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = length<span class="number">-1</span>;i &gt;= <span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        output[i]=tmpD[i]*tmpC[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/19/#剑指offer习题学习过程51-60/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzAxMS8xOTU1Nw=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Wu Rendi">
+          <p class="site-author-name" itemprop="name">Wu Rendi</p>
+           
+              <p class="site-description motion-element" itemprop="description">被没有技术而留下泪水淹死的咸鱼</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wurendikunn@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+		
+		<link rel="stylesheet" href="/dist/APlayer.min.css">
+		<div id="aplayer"></div>
+		<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+		<script type="text/javascript" src="/dist/music.js"></script>
+		
+
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题61：扑克牌中的顺子"><span class="nav-text">面试题61：扑克牌中的顺子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题62：圆圈中最后剩下的数字"><span class="nav-text">面试题62：圆圈中最后剩下的数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题63：股票的最大利润"><span class="nav-text">面试题63：股票的最大利润</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题64：求1-2-···-n"><span class="nav-text">面试题64：求1+2+···+n</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题65：不用加减乘除法做加法"><span class="nav-text">面试题65：不用加减乘除法做加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题66：构建乘积数组"><span class="nav-text">面试题66：构建乘积数组</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+	  
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wu Rendi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

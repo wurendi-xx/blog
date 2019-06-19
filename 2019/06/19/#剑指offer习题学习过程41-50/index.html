@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Recorder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="面试题41：数据流中的中位数 题目：如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。  要点：数组里，如果是没有排序的数组，则插入一个数的视觉复杂度是O(1)，找出中位数的时间复杂度是O(n)。排序的数组里，插入的时间复杂度是O(n)，找出中位数的时间复杂度是O">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recorder">
+<meta property="og:url" content="http://yoursite.com/2019/06/19/#剑指offer习题学习过程41-50/index.html">
+<meta property="og:site_name" content="Recorder">
+<meta property="og:description" content="面试题41：数据流中的中位数 题目：如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。  要点：数组里，如果是没有排序的数组，则插入一个数的视觉复杂度是O(1)，找出中位数的时间复杂度是O(n)。排序的数组里，插入的时间复杂度是O(n)，找出中位数的时间复杂度是O">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-19T07:02:09.694Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Recorder">
+<meta name="twitter:description" content="面试题41：数据流中的中位数 题目：如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。  要点：数组里，如果是没有排序的数组，则插入一个数的视觉复杂度是O(1)，找出中位数的时间复杂度是O(n)。排序的数组里，插入的时间复杂度是O(n)，找出中位数的时间复杂度是O">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/19/#剑指offer习题学习过程41-50/">
+
+
+
+
+
+  <title> | Recorder</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Recorder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/19/#剑指offer习题学习过程41-50/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wu Rendi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Recorder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T15:02:08+08:00">
+                2019-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3.8k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  17 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="面试题41：数据流中的中位数"><a href="#面试题41：数据流中的中位数" class="headerlink" title="面试题41：数据流中的中位数"></a>面试题41：数据流中的中位数</h2><blockquote>
+<p>题目：如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。</p>
+</blockquote>
+<p>要点：数组里，如果是没有排序的数组，则插入一个数的视觉复杂度是O(1)，找出中位数的时间复杂度是O(n)。<br>排序的数组里，插入的时间复杂度是O(n)，找出中位数的时间复杂度是O(1)。</p>
+<p>二叉搜索树里，插入数据时间复杂度是O(logn)，为了得到中位数，需要在二叉树节点添加一个表示子树节点数目的字段，就可以在O(logn)时间内得到中位数。</p>
+<p>为了避免二叉搜索树中最差的情况，可以用平衡搜索二叉树，即AVL树，将原来代表左右子树高度差的平衡因子改为数目之差，中位数获取时间变为O(1)。</p>
+<table>
+<thead>
+<tr>
+<th>数据结构</th>
+<th>插入的时间复杂度</th>
+<th>得到中位数的时间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>没有排序的数组</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>排序的数组</td>
+<td>O(n)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>排序的链表</td>
+<td>O(n)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>二叉搜索树</td>
+<td>平均O(logn)，最差O(n)</td>
+<td>平均O(logn)，最差O(n)</td>
+</tr>
+<tr>
+<td>AVL数</td>
+<td>O(logn)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>最大堆和最小堆</td>
+<td>O(logn)</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<p>用一个最大堆来放置左边数据，最小堆放置右边数据，为了使得两个堆的总数差不超过1，利用奇偶来分配不同的堆。插入时，如果一个新的数比最大堆的堆顶小，则将新的数据插入最大堆，再将最大堆的最大数插入最小堆。用STL中的push_heap,pop_heap以及vector实现堆。仿函数less,greater实现最大堆和最小堆。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">dynamicArray</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(T num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//偶数个数</span></span><br><span class="line">        <span class="keyword">if</span>( (min.size()+max.size()) &amp; <span class="number">1</span> == <span class="number">0</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//插入最大堆，比堆顶小</span></span><br><span class="line">            <span class="keyword">if</span>(max.size() &gt; <span class="number">0</span> &amp;&amp; num &lt; max[<span class="number">0</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                max.push_back(num);</span><br><span class="line">                push_heap(max.begin(),max.end(),less&lt;T&gt;());</span><br><span class="line">                </span><br><span class="line">                num = max[<span class="number">0</span>];</span><br><span class="line">                <span class="comment">//将堆顶和最后一个数对调</span></span><br><span class="line">                pop_heap(max.begin(),max.end(),less&lt;T&gt;());</span><br><span class="line">                <span class="comment">//弹出刚才对调的堆顶</span></span><br><span class="line">                max.pop_back;</span><br><span class="line">            &#125;</span><br><span class="line">            min.push_back(num);</span><br><span class="line">            push_heap(min.begin(),min.end(),greater&lt;T&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//奇数插入，比最小堆堆顶大</span></span><br><span class="line">            <span class="keyword">if</span>(min.size() &gt; <span class="number">0</span> &amp;&amp; min[<span class="number">0</span>] &lt; num)</span><br><span class="line">            &#123;</span><br><span class="line">                min.push_back(num);</span><br><span class="line">                push_heap(min.begin(),min.end(),greater&lt;T&gt;());</span><br><span class="line">                </span><br><span class="line">                num = min[<span class="number">0</span>];</span><br><span class="line">                </span><br><span class="line">                pop_heap(min.begin(),min.end(),greater&lt;T&gt;());</span><br><span class="line">                min.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            max.push_back(num);</span><br><span class="line">            push_heap(max.begin(),max.end(),less&lt;T&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">T <span class="title">getMedian</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = min.size() + max.size();</span><br><span class="line">        <span class="keyword">if</span>(size == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> exception(<span class="string">"no value"</span>);</span><br><span class="line">        T median;</span><br><span class="line">        <span class="comment">//奇数</span></span><br><span class="line">        <span class="keyword">if</span>((size&amp;<span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">            <span class="comment">//由于奇数插入最小堆，所以最小堆数目多1</span></span><br><span class="line">            median = min[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            median = (max[<span class="number">0</span>]+min[<span class="number">0</span>])/<span class="number">2</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> median;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;T&gt; min;</span><br><span class="line">    <span class="built_in">vector</span>&lt;T&gt; max;</span><br><span class="line">        </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>利用insert插入从数据流读到的数据，getMedian取得已获得数据的中位数。</p>
+<h2 id="面试题42：连续子数组的最大和"><a href="#面试题42：连续子数组的最大和" class="headerlink" title="面试题42：连续子数组的最大和"></a>面试题42：连续子数组的最大和</h2><blockquote>
+<p>题目：输入一个整形数组，数组里有正数也有负数。数组中一个或者多个连续整数组成一个子数组。求所有子数组的和的最大值。要求时间复杂度为O(n)。</p>
+</blockquote>
+<p>思路：动态规划，$f(i) = max(pData[i] , f(i-1)+pData[i])$。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = input.size();</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(dp.size() == <span class="number">0</span> || dp(i - <span class="number">1</span>) &lt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            dp.push_back(input(i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(dp(i - <span class="number">1</span>) &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = dp[i] &gt; (f(i) + dp[i<span class="number">-1</span>])? dp[i] : f(i) + dp[i<span class="number">-1</span>];</span><br><span class="line">            dp.push_back(tmp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[length - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题43：1-n整数中出现1的次数"><a href="#面试题43：1-n整数中出现1的次数" class="headerlink" title="面试题43：1~n整数中出现1的次数"></a>面试题43：1~n整数中出现1的次数</h2><blockquote>
+<p>题目：输入一个整数，求1~n这n个整数十进制表示中出现1的次数。</p>
+</blockquote>
+<p>思路：比如计算1~21345中所有出现1的次数。把其分为两段，一段是1~1345，一段是1346~21345。<br>先分析1346~21345，1的出现分为两种情况。</p>
+<ol>
+<li><p>首先分析1出现在最高位的情况。在1346~21345中，1出现在10000~19999这10000个数字的万位，一共出现了10000次即$10^4$。对于一般情况，最高位是1的时候，次数不是$10^4$，而是除去最高位后剩下的数字再加1（1345+1）。</p>
+</li>
+<li><p>再分析1出现在除最高位之外的情况。1346~21345这20000个数字中后4位中1出现的次数是8000次。由于最高位是2，可以再把1346~21345分为两段：1346~11345和11346~21345。每一段剩下的4位数字中，选择其中一位是1，其余三位可以是0~9，根据排列组合，总共出现次数是$2x4x10^3=8000$次。<br> 再分析1~1345，就可以用递归求得。</p>
+<p>这种解法的思路是每次去掉最高为进行递归，递归次数和位数相同，一个数字n有O(logn)位，所以这种思路的时间复杂度是O(logn)。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">NumberOf1Between1AndN</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n&lt;=<span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">char</span> strN[<span class="number">50</span>];</span><br><span class="line">	<span class="built_in">sprintf</span>(strN,<span class="string">"%d"</span>,n);<span class="comment">//转化为字符串便于编程。</span></span><br><span class="line">	<span class="keyword">return</span> NumberOf1(strN);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* strN)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!strN || *strN &lt; <span class="string">'0'</span> || *strN &gt; <span class="string">'9'</span> || *strN == <span class="string">'\0'</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> first = *strN - <span class="string">'0'</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> length = <span class="keyword">static_cast</span>&lt;<span class="keyword">unsigned</span> <span class="keyword">int</span>&gt;(<span class="built_in">strlen</span>(strN));</span><br><span class="line">    <span class="comment">//判断个位数的情况</span></span><br><span class="line">    <span class="keyword">if</span>(length == <span class="number">1</span> &amp;&amp; first ==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(length ==<span class="number">1</span> &amp;&amp; first &gt;<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//假设strN是“21345”</span></span><br><span class="line">    <span class="keyword">int</span> numFirstDigit=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(first &gt; <span class="number">1</span>)</span><br><span class="line">        numFirstDigit = powerBase10(length - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(first == <span class="number">1</span>)</span><br><span class="line">        numFirstDigit = atoi(strN+<span class="number">1</span>)+<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//numOtherDigits是1346~21345除第一位之外的1的数目</span></span><br><span class="line">    <span class="keyword">int</span> numOtherDigits = first*(length - <span class="number">1</span>)*powerBase10(length - <span class="number">2</span>);</span><br><span class="line">    <span class="comment">//numRecursive是1~1345中的数目，也是递归的入口</span></span><br><span class="line">    <span class="keyword">int</span> numRecursive = NumberOf1(strN+<span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> numFirstDigit+numOtherDigits+numRecursive;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">powerBase10</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">unsigned</span> <span class="keyword">int</span> i =<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        result*=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="面试题44：数字序列中某一位的数字"><a href="#面试题44：数字序列中某一位的数字" class="headerlink" title="面试题44：数字序列中某一位的数字"></a>面试题44：数字序列中某一位的数字</h2><blockquote>
+<p>题目：数字以01234567891011121314···的格式序列化到字符序列中。再这个序列中，第5为（从0开始计数）是5，低13为是1，第19为是4。写出一个函数，求任意第n为对应的数字。</p>
+</blockquote>
+<p>思路：一位数字有0~9一共10个二位数字有10~99一共180个，三位数字有100~999一共2700个，以此为区别寻找。比如811位，大于180，所以属于三位数字，$811=270*3+1$，这意味着811位是从100开始的第270个数字即370的中间一位，即7。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">beginNumber</span><span class="params">(<span class="keyword">int</span> digits)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">digitAtIndex</span><span class="params">(<span class="keyword">int</span> index,<span class="keyword">int</span> digits)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOfIntegers</span><span class="params">(<span class="keyword">int</span> digits)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">digitAtIndex</span><span class="params">(<span class="keyword">int</span> index)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">digitAtIndex</span><span class="params">(<span class="keyword">int</span> index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> digits = <span class="number">1</span>;<span class="comment">//代表几位数字</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> numbers = countOfIntegers(digits);<span class="comment">//用来计算几位多少个数字的</span></span><br><span class="line">        <span class="keyword">if</span>(index &lt; numbers*digits)</span><br><span class="line">            <span class="keyword">return</span> digitAtIndex(index,digits);</span><br><span class="line">        index-=digits*numbers;</span><br><span class="line">        digits++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//计算m位一共有多少个，比如1：10，2：90，3：900</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countOfIntegers</span><span class="params">(<span class="keyword">int</span> digits)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(digits == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> count = (<span class="keyword">int</span>)<span class="built_in">pow</span>(<span class="number">10</span>,digits<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">9</span>*count;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//知道位数和序列后，就可以好到那个数字</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">digitAtIndex</span><span class="params">(<span class="keyword">int</span> index,<span class="keyword">int</span> digits)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 811 = 270*3+1，number = 270+100</span></span><br><span class="line">    <span class="keyword">int</span> number = beginNumber(digits)+index/digits;</span><br><span class="line">    <span class="comment">//从右数第几位，</span></span><br><span class="line">    <span class="keyword">int</span> indexFromRight = digits - index%digits;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; indexFromRight;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        number/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> number%<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//得到m位数的第一个数字</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">beginNumber</span><span class="params">(<span class="keyword">int</span> digits)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(digits == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)<span class="built_in">pow</span>(<span class="number">10</span>,digits<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题45：把数组排成最小的数"><a href="#面试题45：把数组排成最小的数" class="headerlink" title="面试题45：把数组排成最小的数"></a>面试题45：把数组排成最小的数</h2><blockquote>
+<p>题目：输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出所有数字中最小的一个。例如输入数组：{3，32，321}，则这三个数字能拼成的最小数字是321323。</p>
+</blockquote>
+<p>思路：自定义一个新的对比规则：有两个数m和n，能拼接成mn和nm，如果mn&lt;nm，则m小于n，如果nm&lt;mn则n小于m，如果mn=nm则m等于n。</p>
+<p>拼接数字可能溢出，需要用字符串解决大数问题。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">compare</span><span class="params">(<span class="built_in">string</span> strNumber1,<span class="built_in">string</span> strNumber2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printMinNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; numbers)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = numbers.size();</span><br><span class="line">    <span class="keyword">if</span>(length &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; strNumbers;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> tmp : numbers)</span><br><span class="line">    &#123;</span><br><span class="line">        strNumbers.push_back(to_string(tmp));</span><br><span class="line">    &#125;</span><br><span class="line">    sort(strNumbers.begin(),strNumbers.end(),compare);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> tmp : strNumbers)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">compare</span><span class="params">(<span class="built_in">string</span> strNumber1,<span class="built_in">string</span> strNumber2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> strCombine1 = strNumber1 + strNumber2;</span><br><span class="line">    <span class="built_in">string</span> strCombine2 = strNumber2 + strNumber1;</span><br><span class="line">    <span class="keyword">return</span> strCombine1.compare(strCombine2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; target = &#123;<span class="number">3</span>,<span class="number">32</span>,<span class="number">321</span>&#125;;</span><br><span class="line">	printMinNumber(target);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个有效的比较规则需要三个条件：自反性，对称性和传递性。</p>
+<h2 id="面试题46：把数字翻译成字符串"><a href="#面试题46：把数字翻译成字符串" class="headerlink" title="面试题46：把数字翻译成字符串"></a>面试题46：把数字翻译成字符串</h2><blockquote>
+<p>题目:给定一个数字，我们按照如下规则把它翻译为字符串：0翻译成“a”，1翻译成“b“，···11翻译成”l“，···25翻译成”z”。一个数字可能有多个翻译。例如，12258有5种翻译：“bccfi”,“bwfi”,“bczi”,“mcfi”,“mzi”。实现 一个函数，用来计算一个数字有多少种不是同的翻译方法。</p>
+</blockquote>
+<p>思路：递归从最大的问题开始自上而下解决问题会产生重复。所以这里从最小的子问题开始自下而上解决问题，这样可以消除重复的子问题。从数字的末尾开始，然后从右到左翻译并计算不同翻译的数目。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getTranslationCount</span><span class="params">(<span class="keyword">int</span> number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(number &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">string</span> numberInString = to_string(number);</span><br><span class="line">    <span class="keyword">return</span> getTranslationCount(numberInString);   </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getTranslationCount</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = number.size();</span><br><span class="line">    <span class="keyword">int</span> *counts = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = length - <span class="number">1</span>;i &gt;= <span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//如果是第一次则初始化，不是第一次则继承上一次count的总数</span></span><br><span class="line">        <span class="keyword">if</span>(i &lt; length - <span class="number">1</span>)</span><br><span class="line">            count = counts[i+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(i &lt; length - <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> digit1 = number[i] -<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">int</span> digit2 = number[i+<span class="number">1</span>] -<span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">int</span> converted = digit1*<span class="number">10</span>+digit2;</span><br><span class="line">            <span class="comment">//可能是两位的字母</span></span><br><span class="line">            <span class="keyword">if</span>(converted &gt;= <span class="number">10</span> &amp;&amp; converted &lt;= <span class="number">25</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i &lt; length - <span class="number">2</span>)</span><br><span class="line">                    count += counts[i+<span class="number">2</span>];</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    count += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        counts[i] = count;</span><br><span class="line">    &#125;</span><br><span class="line">    count = counts[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">delete</span>[] counts;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题47：礼物的最大价值"><a href="#面试题47：礼物的最大价值" class="headerlink" title="面试题47：礼物的最大价值"></a>面试题47：礼物的最大价值</h2><blockquote>
+<p>题目：再一个m*n的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（大于0）。从期盼的左上角开始拿礼物，并每次向左或者向下移动一格，直到到达期盼的右下角。给定一个棋盘，计算出最多能拿到多少价值的礼物。</p>
+</blockquote>
+<p>思路：用动态规划解决问题，定义一个函数$f(i,j)$表示到达坐标为$(i,j)$的格子时能拿到的礼物总和的最大值。我们有两种可能的途径达到坐标为$(i,j)$的格子；通过格子$(i-1,j)$或者$(i,j-1)$。所以：<br>$$f(i,j)=max(f(i-1,j),f(i,j-1))+gift[i,j]$$</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxValue</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; values)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rows = values.size();</span><br><span class="line">    <span class="keyword">if</span>(rows&lt;<span class="number">1</span>)<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> cols = values[<span class="number">0</span>].size();</span><br><span class="line">    <span class="keyword">if</span>(cols&lt;<span class="number">1</span>)<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(cols,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(rows));</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; rows;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; cols;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> up = <span class="number">0</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span>)</span><br><span class="line">                up = dp[i<span class="number">-1</span>][j];</span><br><span class="line">            <span class="keyword">if</span>(j &gt; <span class="number">0</span>)</span><br><span class="line">                left = dp[i][j<span class="number">-1</span>];</span><br><span class="line">            </span><br><span class="line">            dp[i][j] = max(left,up)+values[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> maxValues = dp[rows<span class="number">-1</span>][cols<span class="number">-1</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> maxValues;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题48：最长不含重复字符的子字符串"><a href="#面试题48：最长不含重复字符的子字符串" class="headerlink" title="面试题48：最长不含重复字符的子字符串"></a>面试题48：最长不含重复字符的子字符串</h2><blockquote>
+<p>题目：请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。假设字符串中只包含’a’~’z’的字符。例如在字符串“arabcacfr”中，最长的不包含重复字符的子字符串时”acfr”，长度为4。</p>
+</blockquote>
+<p>思路：暴力算法需要在$O(n^2)$的子字符串中用$O(n)$的时间判断是否重复，这种算法的时间复杂度时$O(n^3)$。</p>
+<p>用动态规划来提高效率，定义函数$f(i)$表示以第$i$个字符为结尾的不包含重复字符的子字符串的最长长度，<br>如果字符没有出现过，那么$f(i)=f(i-1)+1$。<br>如果字符出现过，先计算字符和上次出现位置的距离，记为d。</p>
+<ol>
+<li>$d小于等于f(i-1),f(i)=d$。</li>
+<li>$d大于f(i-1),f(i)=f(i-1)+1$。</li>
+</ol>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">longestSubstringWithoutDuplication</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> curLength = <span class="number">0</span>;<span class="comment">//f(i-1)</span></span><br><span class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span>;<span class="comment">//f(i)</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> length = str.size();</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(<span class="number">26</span>,<span class="number">-1</span>);<span class="comment">//用来存储26个字母所在地位置</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> preIndex = dp[str[i]-<span class="string">'a'</span>];</span><br><span class="line">        <span class="keyword">if</span>((i - preIndex)&gt; curLength || preIndex == <span class="number">-1</span>)</span><br><span class="line">            curLength++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            curLength = i - preIndex;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[str[i]-<span class="string">'a'</span>] = i;</span><br><span class="line">        <span class="keyword">if</span>(curLength&gt;maxLength)</span><br><span class="line">            maxLength = curLength;         </span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> maxLength;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题49：丑数"><a href="#面试题49：丑数" class="headerlink" title="面试题49：丑数"></a>面试题49：丑数</h2><blockquote>
+<p>题目：将只包含因子2，3和5地数称作为丑数。求出从小到大地第1500个丑数。习惯上把1当作第一个丑数。</p>
+</blockquote>
+<p>思路：暴力解法是将目标数对2，3，5连续整除，如果最后得到1，就是丑数。时间复杂度较高。</p>
+<p>创建数组保存已经找到的丑数，用空间换时间的解法。<br>问题是如何获得下一个丑数，假设已经存在一个丑数数组，其最大的丑数为M。下一个大于M的丑数一定是数组中的数乘以2，3或5生成，记为M2，M3，M5（遍历所有数乘以2，3，5之后第一个大于M的数）。下一个丑数就是这三个数中的最小数。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getUglyNumber</span><span class="params">(<span class="keyword">int</span> index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">1</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; uglyNumbers(index);</span><br><span class="line">    uglyNumbers[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> nextUglyIndex = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> M2 = uglyNumbers.begin();</span><br><span class="line">    <span class="keyword">auto</span> M3 = uglyNumbers.begin();</span><br><span class="line">    <span class="keyword">auto</span> M5 = uglyNumbers.begin();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(nextUglyIndex &lt; index)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> min = Min(*M2*<span class="number">2</span>,*M3*<span class="number">3</span>,*M5*<span class="number">5</span>);</span><br><span class="line">        uglyNumbers[nextUglyIndex] = min;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(*M2*<span class="number">2</span> &lt;= uglyNumbers[nextUglyIndex])</span><br><span class="line">            M2++;</span><br><span class="line">        <span class="keyword">while</span>(*M3*<span class="number">3</span> &lt;= uglyNumbers[nextUglyIndex])</span><br><span class="line">            M3++;        </span><br><span class="line">        <span class="keyword">while</span>(*M5*<span class="number">5</span> &lt;= uglyNumbers[nextUglyIndex])</span><br><span class="line">            M5++;</span><br><span class="line">        nextUglyIndex++;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> tmp:uglyNumbers)<span class="built_in">cout</span>&lt;&lt;<span class="string">' '</span>&lt;&lt;tmp;</span><br><span class="line">		</span><br><span class="line">    <span class="keyword">return</span> uglyNumbers.back();    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Min</span><span class="params">(<span class="keyword">int</span> number1,<span class="keyword">int</span> number2,<span class="keyword">int</span> number3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> min = (number1&lt;number2)?number1:number2;</span><br><span class="line">    min = (min&lt;number3)?min:number3;</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="面试题50：第一个只出现一次的字符"><a href="#面试题50：第一个只出现一次的字符" class="headerlink" title="面试题50：第一个只出现一次的字符"></a>面试题50：第一个只出现一次的字符</h2><blockquote>
+<p>题目一：字符串中第一个只出现一次的字符。例如：在“abaccdeff”中，输出b。</p>
+</blockquote>
+<p>思路：暴力解法，时间复杂度为$O(n^2)$。</p>
+<p>用哈希表的思路来做，键值(key)是字符，值(value)是字符出现的次数。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">firstNotRepeatingChar</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = input.size();</span><br><span class="line">    <span class="keyword">if</span>(length&lt;<span class="number">1</span>)<span class="keyword">return</span> <span class="string">'\0'</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; hashMap(<span class="number">256</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        hashMap[input[i]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>((hashMap[input[i]])==<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> input[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'\0'</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>题目二：字符流中第一个只出现一次的字符。例如，当字符流只读出前两个字符”go”的时候，第一个出现的字符是’g’，当字符流读出前6个字符“google”时，第一个只出现一次的字符是’l’。</p>
+</blockquote>
+<p>思路：与题一对比不同的地方在于需要快速地给出字符，不能重新遍历寻找字符。改变在于将值（value）改为字符第一次出现所在的索引，重复出现改为’-2’加以区分，就可以从最小的索引中取出（key）键值即为字符。这样做就可以不用更新之前的值，在数据流长度大于256后，复杂度降低。</p>
+<p>解法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">charStatistics</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    charStatistics():index(<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">256</span>;i++)</span><br><span class="line">            hashMap[i] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> ch)</span><span class="comment">//用insert模拟字符串流</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(hashMap[ch] == <span class="number">-1</span>)</span><br><span class="line">            hashMap[ch] = index;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (hashMap[ch] &gt;= <span class="number">0</span>)</span><br><span class="line">            hashMap[ch] = <span class="number">-2</span>;</span><br><span class="line">        index++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">char</span> <span class="title">firstAppearing</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> ch = <span class="string">'\0'</span>;</span><br><span class="line">        <span class="keyword">int</span> minIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">256</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(hashMap[i] &gt;=<span class="number">0</span> &amp;&amp; hashMap[i] &lt; minIndex)</span><br><span class="line">            &#123;</span><br><span class="line">                ch = <span class="keyword">char</span>(i);</span><br><span class="line">                minIndex = hashMap[i];</span><br><span class="line">            &#125;            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ch;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>: </span><br><span class="line">    <span class="keyword">int</span> hashMap[<span class="number">256</span>];</span><br><span class="line">    <span class="keyword">int</span> index;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/19/#剑指offer习题学习过程31-40/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/19/#剑指offer习题学习过程51-60/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzAxMS8xOTU1Nw=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Wu Rendi">
+          <p class="site-author-name" itemprop="name">Wu Rendi</p>
+           
+              <p class="site-description motion-element" itemprop="description">被没有技术而留下泪水淹死的咸鱼</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wurendikunn@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+		
+		<link rel="stylesheet" href="/dist/APlayer.min.css">
+		<div id="aplayer"></div>
+		<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+		<script type="text/javascript" src="/dist/music.js"></script>
+		
+
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题41：数据流中的中位数"><span class="nav-text">面试题41：数据流中的中位数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题42：连续子数组的最大和"><span class="nav-text">面试题42：连续子数组的最大和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题43：1-n整数中出现1的次数"><span class="nav-text">面试题43：1~n整数中出现1的次数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题44：数字序列中某一位的数字"><span class="nav-text">面试题44：数字序列中某一位的数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题45：把数组排成最小的数"><span class="nav-text">面试题45：把数组排成最小的数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题46：把数字翻译成字符串"><span class="nav-text">面试题46：把数字翻译成字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题47：礼物的最大价值"><span class="nav-text">面试题47：礼物的最大价值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题48：最长不含重复字符的子字符串"><span class="nav-text">面试题48：最长不含重复字符的子字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题49：丑数"><span class="nav-text">面试题49：丑数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题50：第一个只出现一次的字符"><span class="nav-text">面试题50：第一个只出现一次的字符</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+	  
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wu Rendi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Recorder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="leetcode刷题31. Next Permutation Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers. If such arrangement is not possible, it must rearran">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode刷题31-40">
+<meta property="og:url" content="http://yoursite.com/2019/08/19/leetcode31-40/index.html">
+<meta property="og:site_name" content="Recorder">
+<meta property="og:description" content="leetcode刷题31. Next Permutation Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers. If such arrangement is not possible, it must rearran">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Sudoku-by-L2G-20050714_solution.svg/250px-Sudoku-by-L2G-20050714_solution.svg.png">
+<meta property="og:updated_time" content="2019-09-16T12:19:43.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode刷题31-40">
+<meta name="twitter:description" content="leetcode刷题31. Next Permutation Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers. If such arrangement is not possible, it must rearran">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/19/leetcode31-40/">
+
+
+
+
+
+  <title>leetcode刷题31-40 | Recorder</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Recorder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/leetcode31-40/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wu Rendi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Recorder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode刷题31-40</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T17:01:00+08:00">
+                2019-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3.6k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  21 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="leetcode刷题"><a href="#leetcode刷题" class="headerlink" title="leetcode刷题"></a>leetcode刷题</h1><h2 id="31-Next-Permutation"><a href="#31-Next-Permutation" class="headerlink" title="31. Next Permutation"></a>31. Next Permutation</h2><blockquote>
+<p>Implement <strong>next permutation</strong>, which rearranges numbers into the lexicographically next greater permutation of numbers.</p>
+<p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).</p>
+<p>The replacement must be <strong>in-place</strong> and use only constant extra memory.</p>
+<p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; `1,2,3` → `1,3,2`</span></span><br><span class="line"><span class="quote">&gt; `3,2,1` → `1,2,3`</span></span><br><span class="line"><span class="quote">&gt; `1,1,5` → `1,5,1`</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">nextPermutation</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n<span class="number">-1</span> ; i &gt; <span class="number">0</span> ; i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; nums[i<span class="number">-1</span>])&#123;</span><br><span class="line">                k = i<span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k &lt; <span class="number">0</span>)reverse(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">int</span> l;</span><br><span class="line">        <span class="keyword">if</span>(k &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = n<span class="number">-1</span> ; i &gt; k; i--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[i] &gt; nums[k])&#123;</span><br><span class="line">                    l = i;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        </span><br><span class="line">        swap(nums[k],nums[l]);</span><br><span class="line">        reverse(nums.begin()+k+<span class="number">1</span>,nums.end());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="32-Longest-Valid-Parentheses"><a href="#32-Longest-Valid-Parentheses" class="headerlink" title="32. Longest Valid Parentheses"></a>32. Longest Valid Parentheses</h2><blockquote>
+<p>Given a string containing just the characters <code>&#39;(&#39;</code> and <code>&#39;)&#39;</code>, find the length of the longest valid (well-formed) parentheses substring.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;(()&quot;</span><br><span class="line">&gt; Output: 2</span><br><span class="line">&gt; Explanation: The longest valid parentheses substring is &quot;()&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;)()())&quot;</span><br><span class="line">&gt; Output: 4</span><br><span class="line">&gt; Explanation: The longest valid parentheses substring is &quot;()()&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">        tmp.push(<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">int</span> m = s.length();</span><br><span class="line">        <span class="keyword">int</span> dummpy = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; m ; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> t = tmp.top();</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">')'</span> &amp;&amp; t!= <span class="number">-1</span> &amp;&amp; s[t] == <span class="string">'('</span>)&#123;</span><br><span class="line">                tmp.pop();</span><br><span class="line">                 result = max(result,i-tmp.top());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> tmp.push(i);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*            else if(s[i] == ')' )&#123;</span></span><br><span class="line"><span class="comment">                if(tmp.empty() || tmp.top() != '(' )&#123;</span></span><br><span class="line"><span class="comment">                    cout&lt;&lt;"in"&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">                dummpy = 0;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">                else &#123;</span></span><br><span class="line"><span class="comment">                tmp.pop();</span></span><br><span class="line"><span class="comment">                dummpy +=2;</span></span><br><span class="line"><span class="comment">                result = max(result,i-tmp.top());</span></span><br><span class="line"><span class="comment">                     &#125;</span></span><br><span class="line"><span class="comment">            </span></span><br><span class="line"><span class="comment">            &#125;*/</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="33-Search-in-Rotated-Sorted-Array"><a href="#33-Search-in-Rotated-Sorted-Array" class="headerlink" title="33. Search in Rotated Sorted Array"></a>33. Search in Rotated Sorted Array</h2><blockquote>
+<p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., <code>[0,1,2,4,5,6,7]</code> might become <code>[4,5,6,7,0,1,2]</code>).</p>
+<p>You are given a target value to search. If found in the array return its index, otherwise return <code>-1</code>.</p>
+<p>You may assume no duplicate exists in the array.</p>
+<p>Your algorithm’s runtime complexity must be in the order of <em>O</em>(log <em>n</em>).</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: nums = [4,5,6,7,0,1,2], target = 0</span><br><span class="line">&gt; Output: 4</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: nums = [4,5,6,7,0,1,2], target = 3</span><br><span class="line">&gt; Output: -1</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> m = nums.size();</span><br><span class="line">        <span class="keyword">int</span> right = m - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> tmp = m/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span>(right &gt; left)&#123;</span><br><span class="line">            tmp = (right+left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[tmp] &gt; nums[right]) left = tmp + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> right = tmp;            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> rotate = left;</span><br><span class="line">        left = <span class="number">0</span>;</span><br><span class="line">        right = m - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">            tmp = (left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> realmid = (tmp + rotate)%m;</span><br><span class="line">            <span class="keyword">if</span>(nums[realmid] == target)<span class="keyword">return</span> realmid;</span><br><span class="line">            <span class="keyword">if</span>(nums[realmid] &lt; target)left = tmp + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> right = tmp - <span class="number">1</span>;                </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><a href="#34-Find-First-and-Last-Position-of-Element-in-Sorted-Array" class="headerlink" title="34. Find First and Last Position of Element in Sorted Array"></a>34. Find First and Last Position of Element in Sorted Array</h2><blockquote>
+<p>Given an array of integers <code>nums</code> sorted in ascending order, find the starting and ending position of a given <code>target</code> value.</p>
+<p>Your algorithm’s runtime complexity must be in the order of <em>O</em>(log <em>n</em>).</p>
+<p>If the target is not found in the array, return <code>[-1, -1]</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: nums = [5,7,7,8,8,10], target = 8</span><br><span class="line">&gt; Output: [3,4]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: nums = [5,7,7,8,8,10], target = 6</span><br><span class="line">&gt; Output: [-1,-1]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; searchRange(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result = &#123;<span class="number">-1</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> m = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">1</span> &gt; m)<span class="keyword">return</span> result;</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">1</span> == m &amp;&amp; target == nums[<span class="number">0</span>])result = &#123;<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> right = m<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = (right+left)/<span class="number">2</span>;</span><br><span class="line">        <span class="comment">//find the left one</span></span><br><span class="line">        <span class="keyword">while</span>(right &gt; left)&#123;</span><br><span class="line">            mid = (right+left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(target &gt; nums[mid]) left = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> right = mid;</span><br><span class="line">            <span class="comment">//if(target == nums[mid]) result[0] = mid;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(target != nums[left])<span class="keyword">return</span> result;</span><br><span class="line">            <span class="keyword">else</span> result[<span class="number">0</span>] = left;</span><br><span class="line">        <span class="comment">//find the right one</span></span><br><span class="line">        right = m <span class="number">-1</span> ;</span><br><span class="line">        <span class="keyword">while</span>(right &gt; left)&#123;</span><br><span class="line">            mid = (right+left)/<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(target &gt;= nums[mid]) left = mid;</span><br><span class="line">            <span class="keyword">else</span> right = mid<span class="number">-1</span>;</span><br><span class="line">           <span class="comment">//if(target == nums[mid]) result[1] = mid;</span></span><br><span class="line">        &#125;</span><br><span class="line">        result[<span class="number">1</span>] = right;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="35-Search-Insert-Position"><a href="#35-Search-Insert-Position" class="headerlink" title="35. Search Insert Position"></a>35. Search Insert Position</h2><blockquote>
+<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+<p>You may assume no duplicates in the array.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: [1,3,5,6], 5</span><br><span class="line">&gt; Output: 2</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: [1,3,5,6], 2</span><br><span class="line">&gt; Output: 1</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: [1,3,5,6], 7</span><br><span class="line">&gt; Output: 4</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: [1,3,5,6], 0</span><br><span class="line">&gt; Output: 0</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = nums.size();</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = m<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            mid = (right+left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> right = mid;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        result = mid;</span><br><span class="line">        <span class="keyword">while</span>(nums[result] &lt; target &amp;&amp; result &lt; m) &#123;</span><br><span class="line">            result++;</span><br><span class="line">            <span class="comment">//cout&lt;&lt;nums[result]&lt;&lt;' ';</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//cout&lt;&lt;endl&lt;&lt;result&lt;&lt;endl;</span></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="36-Valid-Sudoku"><a href="#36-Valid-Sudoku" class="headerlink" title="36. Valid Sudoku"></a>36. Valid Sudoku</h2><blockquote>
+<p>Determine if a 9x9 Sudoku board is valid. Only the filled cells need to be validated <strong>according to the following rules</strong>:</p>
+<ol>
+<li>Each row must contain the digits <code>1-9</code> without repetition.</li>
+<li>Each column must contain the digits <code>1-9</code> without repetition.</li>
+<li>Each of the 9 <code>3x3</code> sub-boxes of the grid must contain the digits <code>1-9</code> without repetition.</li>
+</ol>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt="img"><br>A partially filled sudoku which is valid.</p>
+<p>The Sudoku board could be partially filled, where empty cells are filled with the character <code>&#39;.&#39;</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input:</span><br><span class="line">&gt; [</span><br><span class="line">&gt;   [&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],</span><br><span class="line">&gt;   [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],</span><br><span class="line">&gt;   [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],</span><br><span class="line">&gt;   [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],</span><br><span class="line">&gt;   [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],</span><br><span class="line">&gt;   [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],</span><br><span class="line">&gt;   [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],</span><br><span class="line">&gt;   [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],</span><br><span class="line">&gt;   [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]</span><br><span class="line">&gt; ]</span><br><span class="line">&gt; Output: true</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input:</span><br><span class="line">&gt; [</span><br><span class="line">&gt;   [&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],</span><br><span class="line">&gt;   [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],</span><br><span class="line">&gt;   [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],</span><br><span class="line">&gt;   [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],</span><br><span class="line">&gt;   [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],</span><br><span class="line">&gt;   [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],</span><br><span class="line">&gt;   [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],</span><br><span class="line">&gt;   [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],</span><br><span class="line">&gt;   [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]</span><br><span class="line">&gt; ]</span><br><span class="line">&gt; Output: false</span><br><span class="line">&gt; Explanation: Same as Example 1, except with the 5 in the top left corner being </span><br><span class="line">&gt;     modified to 8. Since there are two 8&apos;s in the top left 3x3 sub-box, it is invalid.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>A Sudoku board (partially filled) could be valid but is not necessarily solvable.</li>
+<li>Only the filled cells need to be validated according to the mentioned rules.</li>
+<li>The given board contain only digits <code>1-9</code> and the character <code>&#39;.&#39;</code>.</li>
+<li>The given board size is always <code>9x9</code>.</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidSudoku</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//vector&lt;vector&lt;int&gt;&gt; dir(9,vector&lt;int&gt;(9,0));</span></span><br><span class="line">        <span class="keyword">int</span> dir1[<span class="number">9</span>][<span class="number">9</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> dir2[<span class="number">9</span>][<span class="number">9</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> dir3[<span class="number">9</span>][<span class="number">9</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">9</span> ; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ; j &lt; <span class="number">9</span> ; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j]!= <span class="string">'.'</span> )&#123;</span><br><span class="line">                    <span class="keyword">int</span> num = board[i][j] - <span class="string">'0'</span> <span class="number">-1</span>;</span><br><span class="line">                    <span class="comment">//代表当前数字所在框的索引</span></span><br><span class="line">                    <span class="keyword">int</span> k = i/<span class="number">3</span>*<span class="number">3</span> + j/<span class="number">3</span>;</span><br><span class="line">                    <span class="keyword">if</span>(dir1[i][num] || dir2[num][j] || dir3[k][num])<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                    dir1[i][num] = dir2[num][j] = dir3[k][num] =<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"><span class="comment">/*     for(int i = 0 ; i &lt; 9 ; i++)&#123;</span></span><br><span class="line"><span class="comment">        for(int j = 0 ; j &lt; 9 ; j++)&#123;</span></span><br><span class="line"><span class="comment">            cout&lt;&lt;dir1[i][j];</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">     &#125;</span></span><br><span class="line"><span class="comment">        cout&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">             for(int i = 0 ; i &lt; 9 ; i++)&#123;</span></span><br><span class="line"><span class="comment">        for(int j = 0 ; j &lt; 9 ; j++)&#123;</span></span><br><span class="line"><span class="comment">            cout&lt;&lt;dir2[i][j];</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">     &#125;</span></span><br><span class="line"><span class="comment">        cout&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">             for(int i = 0 ; i &lt; 9 ; i++)&#123;</span></span><br><span class="line"><span class="comment">        for(int j = 0 ; j &lt; 9 ; j++)&#123;</span></span><br><span class="line"><span class="comment">            cout&lt;&lt;dir3[i][j];</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">     &#125;</span></span><br><span class="line"><span class="comment">        cout&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="37-Sudoku-Solver"><a href="#37-Sudoku-Solver" class="headerlink" title="37. Sudoku Solver"></a>37. Sudoku Solver</h2><blockquote>
+<p>Write a program to solve a Sudoku puzzle by filling the empty cells.</p>
+<p>A sudoku solution must satisfy <strong>all of the following rules</strong>:</p>
+<ol>
+<li>Each of the digits <code>1-9</code> must occur exactly once in each row.</li>
+<li>Each of the digits <code>1-9</code> must occur exactly once in each column.</li>
+<li>Each of the the digits <code>1-9</code> must occur exactly once in each of the 9 <code>3x3</code> sub-boxes of the grid.</li>
+</ol>
+<p>Empty cells are indicated by the character <code>&#39;.&#39;</code>.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt="img"><br>A sudoku puzzle…</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Sudoku-by-L2G-20050714_solution.svg/250px-Sudoku-by-L2G-20050714_solution.svg.png" alt="img"><br>…and its solution numbers marked in red.</p>
+</blockquote>
+<p>思路：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">cell</span> // <span class="title">encapsulates</span> <span class="title">a</span> <span class="title">single</span> <span class="title">cell</span> <span class="title">on</span> <span class="title">a</span> <span class="title">Sudoku</span> <span class="title">board</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">		<span class="keyword">uint8_t</span> value; <span class="comment">// cell value 1..9 or 0 if unset</span></span><br><span class="line">					   <span class="comment">// number of possible (unconstrained) values for the cell</span></span><br><span class="line">		<span class="keyword">uint8_t</span> numPossibilities;</span><br><span class="line">		<span class="comment">// if bitset[v] is 1 then value can't be v</span></span><br><span class="line">		<span class="built_in">bitset</span>&lt;10&gt; constraints;</span><br><span class="line">		cell() : value(<span class="number">0</span>), numPossibilities(<span class="number">9</span>), constraints() &#123;&#125;;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="built_in">array</span>&lt;<span class="built_in">array</span>&lt;cell, 9&gt;, 9&gt; cells;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// sets the value of the cell to [v]</span></span><br><span class="line">	<span class="comment">// the function also propagates constraints to other cells and deduce new values where possible</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">// updating state of the cell</span></span><br><span class="line">		cell&amp; c = cells[i][j];</span><br><span class="line">		<span class="keyword">if</span> (c.value == v)</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">if</span> (c.constraints[v])</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		c.constraints = <span class="built_in">bitset</span>&lt;<span class="number">10</span>&gt;(<span class="number">0x3FE</span>); <span class="comment">// all 1s</span></span><br><span class="line">		c.constraints.reset(v);</span><br><span class="line">		c.numPossibilities = <span class="number">1</span>;</span><br><span class="line">		c.value = v;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// propagating constraints</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k&lt;<span class="number">9</span>; k++) &#123;</span><br><span class="line">			<span class="comment">// to the row: </span></span><br><span class="line">			<span class="keyword">if</span> (i != k &amp;&amp; !updateConstraints(k, j, v))</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			<span class="comment">// to the column:</span></span><br><span class="line">			<span class="keyword">if</span> (j != k &amp;&amp; !updateConstraints(i, k, v))</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			<span class="comment">// to the 3x3 square:</span></span><br><span class="line">			<span class="keyword">int</span> ix = (i / <span class="number">3</span>) * <span class="number">3</span> + k / <span class="number">3</span>;</span><br><span class="line">			<span class="keyword">int</span> jx = (j / <span class="number">3</span>) * <span class="number">3</span> + k % <span class="number">3</span>;</span><br><span class="line">			<span class="keyword">if</span> (ix != i &amp;&amp; jx != j &amp;&amp; !updateConstraints(ix, jx, v))</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// update constraints of the cell i,j by excluding possibility of 'excludedValue'</span></span><br><span class="line">	<span class="comment">// once there's one possibility left the function recurses back into set()</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">updateConstraints</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> excludedValue)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		cell&amp; c = cells[i][j];</span><br><span class="line">		<span class="keyword">if</span> (c.constraints[excludedValue]) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (c.value == excludedValue) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		c.constraints.<span class="built_in">set</span>(excludedValue);</span><br><span class="line">		<span class="keyword">if</span> (--c.numPossibilities &gt; <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">1</span>; v &lt;= <span class="number">9</span>; v++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!c.constraints[v]) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="built_in">set</span>(i, j, v);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		assert(<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// backtracking state - list of empty cells</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; bt;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// find values for empty cells</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">findValuesForEmptyCells</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">// collecting all empty cells</span></span><br><span class="line">		bt.clear();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (!cells[i][j].value)</span><br><span class="line">					bt.push_back(make_pair(i, j));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// making backtracking efficient by pre-sorting empty cells by numPossibilities</span></span><br><span class="line">		sort(bt.begin(), bt.end(), [<span class="keyword">this</span>](<span class="keyword">const</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp;a, <span class="keyword">const</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp;b) &#123;</span><br><span class="line">			<span class="keyword">return</span> cells[a.first][a.second].numPossibilities &lt; cells[b.first][b.second].numPossibilities; &#125;);</span><br><span class="line">		<span class="keyword">return</span> backtrack(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Finds value for all empty cells with index &gt;=k</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (k &gt;= bt.size())</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">int</span> i = bt[k].first;</span><br><span class="line">		<span class="keyword">int</span> j = bt[k].second;</span><br><span class="line">		<span class="comment">// fast path - only 1 possibility</span></span><br><span class="line">		<span class="keyword">if</span> (cells[i][j].value)</span><br><span class="line">			<span class="keyword">return</span> backtrack(k + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">auto</span> constraints = cells[i][j].constraints;</span><br><span class="line">		<span class="comment">// slow path &gt;1 possibility.</span></span><br><span class="line">		<span class="comment">// making snapshot of the state</span></span><br><span class="line">		<span class="built_in">array</span>&lt;<span class="built_in">array</span>&lt;cell, 9&gt;, 9&gt; snapshot(cells);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">1</span>; v &lt;= <span class="number">9</span>; v++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!constraints[v]) &#123;</span><br><span class="line">				<span class="keyword">if</span> (<span class="built_in">set</span>(i, j, v)) &#123;</span><br><span class="line">					<span class="keyword">if</span> (backtrack(k + <span class="number">1</span>))</span><br><span class="line">						<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="comment">// restoring from snapshot,</span></span><br><span class="line">				<span class="comment">// note: computationally this is cheaper</span></span><br><span class="line">				<span class="comment">// than alternative implementation with undoing the changes</span></span><br><span class="line">				cells = snapshot;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt; &amp;board)</span> </span>&#123;</span><br><span class="line">		cells = <span class="built_in">array</span>&lt;<span class="built_in">array</span>&lt;cell, <span class="number">9</span>&gt;, <span class="number">9</span>&gt;(); <span class="comment">// clear array</span></span><br><span class="line">											<span class="comment">// Decoding input board into the internal cell matrix.</span></span><br><span class="line">											<span class="comment">// As we do it - constraints are propagated and even additional values are set as we go</span></span><br><span class="line">											<span class="comment">// (in the case if it is possible to unambiguously deduce them).</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (board[i][j] != <span class="string">'.'</span> &amp;&amp; !<span class="built_in">set</span>(i, j, board[i][j] - <span class="string">'0'</span>))</span><br><span class="line">					<span class="keyword">return</span>; <span class="comment">// sudoku is either incorrect or unsolvable</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// if we're lucky we've already got a solution,</span></span><br><span class="line">		<span class="comment">// however, if we have empty cells we need to use backtracking to fill them</span></span><br><span class="line">		<span class="keyword">if</span> (!findValuesForEmptyCells())</span><br><span class="line">			<span class="keyword">return</span>; <span class="comment">// sudoku is unsolvable</span></span><br><span class="line"></span><br><span class="line">					<span class="comment">// copying the solution back to the board</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (cells[i][j].value)</span><br><span class="line">					board[i][j] = cells[i][j].value + <span class="string">'0'</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isValidSudoku</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//vector&lt;vector&lt;int&gt;&gt; dir(9,vector&lt;int&gt;(9,0));</span></span><br><span class="line">		<span class="keyword">int</span> dir1[<span class="number">9</span>][<span class="number">9</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">		<span class="keyword">int</span> dir2[<span class="number">9</span>][<span class="number">9</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">		<span class="keyword">int</span> dir3[<span class="number">9</span>][<span class="number">9</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (board[i][j] != <span class="string">'.'</span>) &#123;</span><br><span class="line">					<span class="keyword">int</span> num = board[i][j] - <span class="string">'0'</span> - <span class="number">1</span>;</span><br><span class="line">					<span class="keyword">int</span> k = i / <span class="number">3</span> * <span class="number">3</span> + j / <span class="number">3</span>;</span><br><span class="line">					<span class="keyword">if</span> (dir1[i][num] || dir2[j][num] || dir3[num][k])<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">					dir1[i][num] = dir2[j][num] = dir3[num][k] = <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="38-Count-and-Say"><a href="#38-Count-and-Say" class="headerlink" title="38. Count and Say"></a>38. Count and Say</h2><blockquote>
+<p>The count-and-say sequence is the sequence of integers with the first five terms as following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; 1.     1</span><br><span class="line">&gt; 2.     11</span><br><span class="line">&gt; 3.     21</span><br><span class="line">&gt; 4.     1211</span><br><span class="line">&gt; 5.     111221</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><code>1</code> is read off as <code>&quot;one 1&quot;</code> or <code>11</code>.<br><code>11</code> is read off as <code>&quot;two 1s&quot;</code> or <code>21</code>.<br><code>21</code> is read off as <code>&quot;one 2</code>, then <code>one 1&quot;</code> or <code>1211</code>.</p>
+<p>Given an integer <em>n</em> where 1 ≤ <em>n</em> ≤ 30, generate the <em>n</em>th term of the count-and-say sequence.</p>
+<p>Note: Each term of the sequence of integers will be represented as a string.</p>
+<p>初始值第一行是 1。<br>第二行读第一行，1 个 1，去掉个字，所以第二行就是 11。<br>第三行读第二行，2 个 1，去掉个字，所以第三行就是 21。<br>第四行读第三行，1 个 2，1 个 1，去掉所有个字，所以第四行就是 1211。<br>第五行读第四行，1 个 1，1 个 2，2 个 1，去掉所有个字，所以第五航就是 111221。<br>第六行读第五行，3 个 1，2 个 2，1 个 1，去掉所以个字，所以第六行就是 312211。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>)<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="built_in">string</span> cur = <span class="string">"1"</span>;</span><br><span class="line">        <span class="built_in">string</span> nex = <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(--n)</span><br><span class="line">        &#123;          </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; cur.size();i++)</span><br><span class="line">            &#123;        </span><br><span class="line">                <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span>(( i+<span class="number">1</span> &lt; cur.size() )&amp;&amp; cur[i] == cur[i+<span class="number">1</span>])</span><br><span class="line">                &#123;</span><br><span class="line">                    count ++;</span><br><span class="line">                    i++;</span><br><span class="line">                &#125;</span><br><span class="line">                nex += (to_string(count)+cur[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            cur = nex;</span><br><span class="line">            nex = <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="39-Combination-Sum"><a href="#39-Combination-Sum" class="headerlink" title="39. Combination Sum"></a>39. Combination Sum</h2><blockquote>
+<p>Given a <strong>set</strong> of candidate numbers (<code>candidates</code>) <strong>(without duplicates)</strong> and a target number (<code>target</code>), find all unique combinations in <code>candidates</code> where the candidate numbers sums to <code>target</code>.</p>
+<p>The <strong>same</strong> repeated number may be chosen from <code>candidates</code> unlimited number of times.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All numbers (including <code>target</code>) will be positive integers.</li>
+<li>The solution set must not contain duplicate combinations.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: candidates = [2,3,6,7], target = 7,</span><br><span class="line">&gt; A solution set is:</span><br><span class="line">&gt; [</span><br><span class="line">&gt;   [7],</span><br><span class="line">&gt;   [2,2,3]</span><br><span class="line">&gt; ]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: candidates = [2,3,5], target = 8,</span><br><span class="line">&gt; A solution set is:</span><br><span class="line">&gt; [</span><br><span class="line">&gt;   [2,2,2,2],</span><br><span class="line">&gt;   [2,3,3],</span><br><span class="line">&gt;   [3,5]</span><br><span class="line">&gt; ]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        sort(candidates.begin(),candidates.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; combination;</span><br><span class="line">        combinationSumCore(candidates,result,target,combination,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> result;        </span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">combinationSumCore</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates,<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;result,<span class="keyword">int</span> target,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;combination,<span class="keyword">int</span> begin)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!target)</span><br><span class="line">        &#123;</span><br><span class="line">            result.push_back(combination);</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = begin;i &lt; candidates.size() &amp;&amp; target &gt;= candidates[i];i++)</span><br><span class="line">        &#123;</span><br><span class="line">            combination.push_back(candidates[i]);</span><br><span class="line">            combinationSumCore(candidates,result,target-candidates[i],combination,i);</span><br><span class="line">            combination.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="40-Combination-Sum-II"><a href="#40-Combination-Sum-II" class="headerlink" title="40. Combination Sum II"></a>40. Combination Sum II</h2><blockquote>
+<p>Given a collection of candidate numbers (<code>candidates</code>) and a target number (<code>target</code>), find all unique combinations in <code>candidates</code> where the candidate numbers sums to <code>target</code>.</p>
+<p>Each number in <code>candidates</code> may only be used <strong>once</strong> in the combination.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All numbers (including <code>target</code>) will be positive integers.</li>
+<li>The solution set must not contain duplicate combinations.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: candidates = [10,1,2,7,6,1,5], target = 8,</span><br><span class="line">&gt; A solution set is:</span><br><span class="line">&gt; [</span><br><span class="line">&gt;   [1, 7],</span><br><span class="line">&gt;   [1, 2, 5],</span><br><span class="line">&gt;   [2, 6],</span><br><span class="line">&gt;   [1, 1, 6]</span><br><span class="line">&gt; ]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: candidates = [2,5,2,1,2], target = 5,</span><br><span class="line">&gt; A solution set is:</span><br><span class="line">&gt; [</span><br><span class="line">&gt;   [1,2,2],</span><br><span class="line">&gt;   [5]</span><br><span class="line">&gt; ]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum2(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        sort(candidates.begin(),candidates.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; combination;</span><br><span class="line">        combinationSum2Core(candidates,result,target,combination,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> result;        </span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">combinationSum2Core</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates,<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;result,<span class="keyword">int</span> target,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;combination,<span class="keyword">int</span> begin)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!target)</span><br><span class="line">        &#123;</span><br><span class="line">            result.push_back(combination);</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = begin;i &lt; candidates.size() &amp;&amp; target &gt;= candidates[i];i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == begin || candidates[i] != candidates[i - <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">            combination.push_back(candidates[i]);</span><br><span class="line">            combinationSum2Core(candidates,result,target-candidates[i],combination,i+<span class="number">1</span>);</span><br><span class="line">            combination.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/19/leetcode1-10/" rel="next" title="leetcode刷题1-10">
+                <i class="fa fa-chevron-left"></i> leetcode刷题1-10
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/19/leetcode21-30/" rel="prev" title="leetcode刷题21-30">
+                leetcode刷题21-30 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzAxMS8xOTU1Nw=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Wu Rendi">
+          <p class="site-author-name" itemprop="name">Wu Rendi</p>
+           
+              <p class="site-description motion-element" itemprop="description">被没有技术而留下泪水淹死的咸鱼</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wurendikunn@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+		
+		<link rel="stylesheet" href="/dist/APlayer.min.css">
+		<div id="aplayer"></div>
+		<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+		<script type="text/javascript" src="/dist/music.js"></script>
+		
+
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode刷题"><span class="nav-text">leetcode刷题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#31-Next-Permutation"><span class="nav-text">31. Next Permutation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-Longest-Valid-Parentheses"><span class="nav-text">32. Longest Valid Parentheses</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-Search-in-Rotated-Sorted-Array"><span class="nav-text">33. Search in Rotated Sorted Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><span class="nav-text">34. Find First and Last Position of Element in Sorted Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-Search-Insert-Position"><span class="nav-text">35. Search Insert Position</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-Valid-Sudoku"><span class="nav-text">36. Valid Sudoku</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37-Sudoku-Solver"><span class="nav-text">37. Sudoku Solver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-Count-and-Say"><span class="nav-text">38. Count and Say</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-Combination-Sum"><span class="nav-text">39. Combination Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-Combination-Sum-II"><span class="nav-text">40. Combination Sum II</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+	  
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wu Rendi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Recorder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="leetcode刷题1-101.TwoSum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode刷题1-10">
+<meta property="og:url" content="http://yoursite.com/2019/08/19/leetcode1-10/index.html">
+<meta property="og:site_name" content="Recorder">
+<meta property="og:description" content="leetcode刷题1-101.TwoSum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-16T12:18:36.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode刷题1-10">
+<meta name="twitter:description" content="leetcode刷题1-101.TwoSum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/19/leetcode1-10/">
+
+
+
+
+
+  <title>leetcode刷题1-10 | Recorder</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Recorder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/leetcode1-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wu Rendi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Recorder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode刷题1-10</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T17:01:00+08:00">
+                2019-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2.2k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  13 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="leetcode刷题1-10"><a href="#leetcode刷题1-10" class="headerlink" title="leetcode刷题1-10"></a>leetcode刷题1-10</h1><h2 id="1-TwoSum"><a href="#1-TwoSum" class="headerlink" title="1.TwoSum"></a>1.TwoSum</h2><blockquote>
+<p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have <strong>exactly</strong> one solution, and you may not use the <em>same</em> element twice.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line">&gt; </span><br><span class="line">&gt; Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">&gt; return [0, 1].</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>思路：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; value;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i &lt; nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>;j &lt; nums.size();j++)&#123;</span><br><span class="line">                <span class="keyword">if</span> (target == (nums[i]+nums[j]))&#123;</span><br><span class="line">                    value.push_back(i);</span><br><span class="line">                    value.push_back(j);</span><br><span class="line">                    <span class="keyword">return</span> value;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="2-Add-Two-Numbers"><a href="#2-Add-Two-Numbers" class="headerlink" title="2.Add Two Numbers"></a>2.Add Two Numbers</h2><blockquote>
+<p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in <strong>reverse order</strong> and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">&gt; Output: 7 -&gt; 0 -&gt; 8</span><br><span class="line">&gt; Explanation: 342 + 465 = 807.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        <span class="function">ListNode <span class="title">result</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">        ListNode* p = &amp;result;</span><br><span class="line">        <span class="keyword">int</span> add=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l1 != <span class="literal">NULL</span> || l2 != <span class="literal">NULL</span> || add)&#123;</span><br><span class="line">            <span class="keyword">int</span> x,y;</span><br><span class="line">            <span class="keyword">if</span>(l1 != <span class="literal">NULL</span>) x = l1-&gt;val;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                x = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(l2 != <span class="literal">NULL</span>) y = l2-&gt;val;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                y = <span class="number">0</span>;</span><br><span class="line">                        </span><br><span class="line">            <span class="keyword">if</span>(x+y+add &gt;= <span class="number">10</span>)&#123;</span><br><span class="line">                p-&gt;next = <span class="keyword">new</span> ListNode(x + y - <span class="number">10</span> + add);</span><br><span class="line">                add = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                p-&gt;next = <span class="keyword">new</span> ListNode(x + y + add);</span><br><span class="line">                add = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(l1 != <span class="literal">NULL</span>)l1 = l1-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(l2 != <span class="literal">NULL</span>)l2 = l2-&gt;next;</span><br><span class="line">            p = p-&gt;next;  </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-Longest-Substring-Without-Repeating-Characters"><a href="#3-Longest-Substring-Without-Repeating-Characters" class="headerlink" title="3.Longest Substring Without Repeating Characters"></a>3.Longest Substring Without Repeating Characters</h2><blockquote>
+<p>Given a string, find the length of the <strong>longest substring</strong> without repeating characters.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;abcabcbb&quot;</span><br><span class="line">&gt; Output: 3 </span><br><span class="line">&gt; Explanation: The answer is &quot;abc&quot;, with the length of 3. </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;bbbbb&quot;</span><br><span class="line">&gt; Output: 1</span><br><span class="line">&gt; Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;pwwkew&quot;</span><br><span class="line">&gt; Output: 3</span><br><span class="line">&gt; Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">&gt;              Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a(<span class="number">256</span>,<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[s[i]]&gt;start)&#123;</span><br><span class="line">                start = a[s[i]];</span><br><span class="line">            &#125; </span><br><span class="line">            a[s[i]] = i;</span><br><span class="line">           len=max(i-start,len);</span><br><span class="line">           &#125;               </span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="4-Median-of-Two-Sorted-Arrays"><a href="#4-Median-of-Two-Sorted-Arrays" class="headerlink" title="4.Median of Two Sorted Arrays"></a>4.Median of Two Sorted Arrays</h2><blockquote>
+<p>There are two sorted arrays <strong>nums1</strong> and <strong>nums2</strong> of size m and n respectively.</p>
+<p>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+<p>You may assume <strong>nums1</strong> and <strong>nums2</strong> cannot be both empty.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; nums1 = [1, 3]</span><br><span class="line">&gt; nums2 = [2]</span><br><span class="line">&gt; </span><br><span class="line">&gt; The median is 2.0</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; nums1 = [1, 2]</span><br><span class="line">&gt; nums2 = [3, 4]</span><br><span class="line">&gt; </span><br><span class="line">&gt; The median is (2 + 3)/2 = 2.5</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums1.size()&gt;nums2.size())nums1.swap(nums2);</span><br><span class="line">        <span class="keyword">int</span> m = nums1.size(),n = nums2.size();</span><br><span class="line">        <span class="keyword">int</span> mid = (m+n<span class="number">-1</span>)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>,r = m<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">            <span class="keyword">int</span> m1 = l+((r-l)&gt;&gt;<span class="number">1</span>) ,m2 = mid - m1;</span><br><span class="line">            <span class="keyword">if</span>(nums1[m1]&lt;=nums2[m2]) l = m1 + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> r = m1 <span class="number">-1</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> a = max(<span class="number">0</span>&lt;=r?nums1[r]:INT_MIN,<span class="number">0</span>&lt;=mid-l?nums2[mid-l]:INT_MIN);</span><br><span class="line">        <span class="keyword">if</span> ((m+n)&amp;<span class="number">1</span>) <span class="keyword">return</span> a;</span><br><span class="line">        <span class="keyword">int</span> b = min(l&lt;m?nums1[l]:INT_MAX,mid-r&lt;n?nums2[mid-r]:INT_MAX);</span><br><span class="line">        <span class="keyword">return</span> (a+b)/<span class="number">2.0</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="5-Longest-Palindromic-Substring"><a href="#5-Longest-Palindromic-Substring" class="headerlink" title="5.Longest Palindromic Substring"></a>5.Longest Palindromic Substring</h2><blockquote>
+<p>Given a string <strong>s</strong>, find the longest palindromic substring in <strong>s</strong>. You may assume that the maximum length of <strong>s</strong> is 1000.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;babad&quot;</span><br><span class="line">&gt; Output: &quot;bab&quot;</span><br><span class="line">&gt; Note: &quot;aba&quot; is also a valid answer.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;cbbd&quot;</span><br><span class="line">&gt; Output: &quot;bb&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">string</span> t = <span class="string">"$#"</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i &lt; s.size() ; i++)&#123;</span><br><span class="line">            t+=s[i];</span><br><span class="line">            t+=<span class="string">"#"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> maxcenter = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> maxright = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> p[t.size()];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; t.size(); i++)&#123;</span><br><span class="line">            p[i] = maxright &gt; i ?min(maxright - i , p[<span class="number">2</span>*maxcenter - i])  : <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>((t[i-p[i]]) == (t[i+p[i]])) p[i]++;</span><br><span class="line">            <span class="keyword">if</span>(p[i]&gt;maxright-maxcenter)&#123;</span><br><span class="line">                maxcenter = i;</span><br><span class="line">                maxright = i + p[i];</span><br><span class="line">            &#125;               </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.substr((<span class="number">2</span>*maxcenter - maxright)/<span class="number">2</span>,maxright - maxcenter <span class="number">-1</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="6-ZigZag-Conversion"><a href="#6-ZigZag-Conversion" class="headerlink" title="6.ZigZag Conversion"></a>6.ZigZag Conversion</h2><blockquote>
+<p>The string <code>&quot;PAYPALISHIRING&quot;</code> is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; P   A   H   N</span><br><span class="line">&gt; A P L S I I G</span><br><span class="line">&gt; Y   I   R</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>And then read line by line: <code>&quot;PAHNAPLSIIGYIR&quot;</code></p>
+<p>Write the code that will take a string and make this conversion given a number of rows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; string convert(string s, int numRows);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: s = &quot;PAYPALISHIRING&quot;, numRows = 3</span><br><span class="line">&gt; Output: &quot;PAHNAPLSIIGYIR&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: s = &quot;PAYPALISHIRING&quot;, numRows = 4</span><br><span class="line">&gt; Output: &quot;PINALSIGYAHRPI&quot;</span><br><span class="line">&gt; Explanation:</span><br><span class="line">&gt; </span><br><span class="line">&gt; P     I    N</span><br><span class="line">&gt; A   L S  I G</span><br><span class="line">&gt; Y A   H R</span><br><span class="line">&gt; P     I</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">convert</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> numRows)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">bool</span> direction = <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">string</span> result;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; a(min(numRows,<span class="keyword">int</span>(s.size())));</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">1</span> == numRows)<span class="keyword">return</span> s;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : s)&#123;</span><br><span class="line">            a[index] += c;</span><br><span class="line">            <span class="keyword">if</span>(index == <span class="number">0</span> || index == numRows - <span class="number">1</span>) direction = !direction;</span><br><span class="line">            index += direction ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span> c : a)&#123;</span><br><span class="line">            result += c;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="7-Reverse-Integer"><a href="#7-Reverse-Integer" class="headerlink" title="7.Reverse Integer"></a>7.Reverse Integer</h2><blockquote>
+<p>Given a 32-bit signed integer, reverse digits of an integer.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: 123</span><br><span class="line">&gt; Output: 321</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: -123</span><br><span class="line">&gt; Output: -321</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: 120</span><br><span class="line">&gt; Output: 21</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> a = <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">int</span> pop;</span><br><span class="line">        <span class="keyword">while</span>(x != <span class="number">0</span>)&#123;</span><br><span class="line">            pop = x%<span class="number">10</span>;</span><br><span class="line">            x/=<span class="number">10</span>;</span><br><span class="line">            a = a*<span class="number">10</span> + pop;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (a&gt;INT_MAX || a&lt;INT_MIN)?<span class="number">0</span>:a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="8-String-to-Integer-atoi"><a href="#8-String-to-Integer-atoi" class="headerlink" title="8. String to Integer (atoi)"></a>8. String to Integer (atoi)</h2><blockquote>
+<p>Implement <code>atoi</code> which converts a string to an integer.</p>
+<p>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.</p>
+<p>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.</p>
+<p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
+<p>If no valid conversion could be performed, a zero value is returned.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Only the space character <code>&#39; &#39;</code> is considered as whitespace character.</li>
+<li>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. If the numerical value is out of the range of representable values, INT_MAX (231 − 1) or INT_MIN (−231) is returned.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;42&quot;</span><br><span class="line">&gt; Output: 42</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;   -42&quot;</span><br><span class="line">&gt; Output: -42</span><br><span class="line">&gt; Explanation: The first non-whitespace character is &apos;-&apos;, which is the minus sign.</span><br><span class="line">&gt;              Then take as many numerical digits as possible, which gets 42.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;4193 with words&quot;</span><br><span class="line">&gt; Output: 4193</span><br><span class="line">&gt; Explanation: Conversion stops at digit &apos;3&apos; as the next character is not a numerical digit.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;words and 987&quot;</span><br><span class="line">&gt; Output: 0</span><br><span class="line">&gt; Explanation: The first non-whitespace character is &apos;w&apos;, which is not a numerical </span><br><span class="line">&gt;              digit or a +/- sign. Therefore no valid conversion could be performed.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 5:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: &quot;-91283472332&quot;</span><br><span class="line">&gt; Output: -2147483648</span><br><span class="line">&gt; Explanation: The number &quot;-91283472332&quot; is out of the range of a 32-bit signed integer.</span><br><span class="line">&gt;              Thefore INT_MIN (−231) is returned.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myAtoi</span><span class="params">(<span class="built_in">string</span> str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sign = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> is_digit = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c : str)&#123;</span><br><span class="line">            count ++;</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">'+'</span> == c &amp;&amp; <span class="number">1</span> == count)&#123;</span><br><span class="line">                sign =<span class="number">1</span>;</span><br><span class="line">                is_digit ++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">'-'</span> == c &amp;&amp; <span class="number">1</span> == count)&#123;</span><br><span class="line">                sign = <span class="number">-1</span>;</span><br><span class="line">                is_digit ++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">' '</span> == c &amp;&amp; <span class="number">1</span> == count)&#123;</span><br><span class="line">                count --;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">isdigit</span>(c) &amp;&amp; <span class="number">2</span> &gt; is_digit)</span><br><span class="line">                result =result*<span class="number">10</span> + (c-<span class="string">'0'</span>);            </span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(result &gt; INT_MAX)&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">1</span> == sign)<span class="keyword">return</span> INT_MAX;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">-1</span> == sign)<span class="keyword">return</span> INT_MIN;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">return</span> result*sign;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="9-Palindrome-Number"><a href="#9-Palindrome-Number" class="headerlink" title="9. Palindrome Number"></a>9. Palindrome Number</h2><blockquote>
+<p>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: 121</span><br><span class="line">&gt; Output: true</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: -121</span><br><span class="line">&gt; Output: false</span><br><span class="line">&gt; Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input: 10</span><br><span class="line">&gt; Output: false</span><br><span class="line">&gt; Explanation: Reads 01 from right to left. Therefore it is not a palindrome.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span> || (<span class="number">0</span> == x%<span class="number">10</span> &amp;&amp; x!= <span class="number">0</span>))<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> reverse=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> y = x;</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">0</span> &lt; y)&#123;</span><br><span class="line">            reverse = reverse*<span class="number">10</span> +y%<span class="number">10</span>;</span><br><span class="line">            y/=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> x == reverse;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="10-Regular-Expression-Matching"><a href="#10-Regular-Expression-Matching" class="headerlink" title="10. Regular Expression Matching"></a>10. Regular Expression Matching</h2><blockquote>
+<p>Given an input string (<code>s</code>) and a pattern (<code>p</code>), implement regular expression matching with support for <code>&#39;.&#39;</code> and <code>&#39;*&#39;</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; &apos;.&apos; Matches any single character.</span><br><span class="line">&gt; &apos;*&apos; Matches zero or more of the preceding element.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>The matching should cover the <strong>entire</strong> input string (not partial).</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>s</code> could be empty and contains only lowercase letters <code>a-z</code>.</li>
+<li><code>p</code> could be empty and contains only lowercase letters <code>a-z</code>, and characters like <code>.</code> or <code>*</code>.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input:</span><br><span class="line">&gt; s = &quot;aa&quot;</span><br><span class="line">&gt; p = &quot;a&quot;</span><br><span class="line">&gt; Output: false</span><br><span class="line">&gt; Explanation: &quot;a&quot; does not match the entire string &quot;aa&quot;.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input:</span><br><span class="line">&gt; s = &quot;aa&quot;</span><br><span class="line">&gt; p = &quot;a*&quot;</span><br><span class="line">&gt; Output: true</span><br><span class="line">&gt; Explanation: &apos;*&apos; means zero or more of the preceding element, &apos;a&apos;. Therefore, by repeating &apos;a&apos; once, it becomes &quot;aa&quot;.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input:</span><br><span class="line">&gt; s = &quot;ab&quot;</span><br><span class="line">&gt; p = &quot;.*&quot;</span><br><span class="line">&gt; Output: true</span><br><span class="line">&gt; Explanation: &quot;.*&quot; means &quot;zero or more (*) of any character (.)&quot;.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input:</span><br><span class="line">&gt; s = &quot;aab&quot;</span><br><span class="line">&gt; p = &quot;c*a*b&quot;</span><br><span class="line">&gt; Output: true</span><br><span class="line">&gt; Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore, it matches &quot;aab&quot;.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 5:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; Input:</span><br><span class="line">&gt; s = &quot;mississippi&quot;</span><br><span class="line">&gt; p = &quot;mis*is*p*.&quot;</span><br><span class="line">&gt; Output: false</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">'*'</span> == p[<span class="number">0</span>])<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> m = s.length();</span><br><span class="line">        <span class="keyword">int</span> n = p.length();</span><br><span class="line">        <span class="keyword">bool</span> dp[m+<span class="number">1</span>][n+<span class="number">1</span>] &#123;&#123;<span class="literal">false</span>&#125;&#125;;</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= m ; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j&lt;=n ; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="string">'*'</span> == p[j<span class="number">-1</span>])&#123;</span><br><span class="line">                    dp[i][j] = dp[i][j<span class="number">-2</span>] || (i &gt; <span class="number">0</span> &amp;&amp; (s[i - <span class="number">1</span>] == p[j - <span class="number">2</span>] || p[j - <span class="number">2</span>] == <span class="string">'.'</span>) &amp;&amp; dp[i - <span class="number">1</span>][j]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> dp[i][j] = i &gt; <span class="number">0</span> &amp;&amp; dp[i - <span class="number">1</span>][j - <span class="number">1</span>] &amp;&amp; (s[i - <span class="number">1</span>] == p[j - <span class="number">1</span>] || p[j - <span class="number">1</span>] == <span class="string">'.'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/19/剑指offer习题学习过程61-66/" rel="next" title="剑指offer习题学习过程51-66">
+                <i class="fa fa-chevron-left"></i> 剑指offer习题学习过程51-66
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/19/leetcode31-40/" rel="prev" title="leetcode刷题31-40">
+                leetcode刷题31-40 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzAxMS8xOTU1Nw=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Wu Rendi">
+          <p class="site-author-name" itemprop="name">Wu Rendi</p>
+           
+              <p class="site-description motion-element" itemprop="description">被没有技术而留下泪水淹死的咸鱼</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wurendikunn@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+		
+		<link rel="stylesheet" href="/dist/APlayer.min.css">
+		<div id="aplayer"></div>
+		<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+		<script type="text/javascript" src="/dist/music.js"></script>
+		
+
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode刷题1-10"><span class="nav-text">leetcode刷题1-10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-TwoSum"><span class="nav-text">1.TwoSum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Add-Two-Numbers"><span class="nav-text">2.Add Two Numbers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Longest-Substring-Without-Repeating-Characters"><span class="nav-text">3.Longest Substring Without Repeating Characters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Median-of-Two-Sorted-Arrays"><span class="nav-text">4.Median of Two Sorted Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Longest-Palindromic-Substring"><span class="nav-text">5.Longest Palindromic Substring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-ZigZag-Conversion"><span class="nav-text">6.ZigZag Conversion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Reverse-Integer"><span class="nav-text">7.Reverse Integer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-String-to-Integer-atoi"><span class="nav-text">8. String to Integer (atoi)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Palindrome-Number"><span class="nav-text">9. Palindrome Number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Regular-Expression-Matching"><span class="nav-text">10. Regular Expression Matching</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+	  
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wu Rendi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

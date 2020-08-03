@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="编码规范 工程文档,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Recorder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Doxygen代码注释规范[TOC] Doxygen使用场景Doxygen是一个用来生成代码文档的辅助工具，依据Doxygen语法规范编写代码注释不仅可以规范代码编写格式，并且生成的代码文档能够提高代码的阅读效率，减少软件工程师的沟通成本，在工作交接中也能快速进行。 Doxygen注释语法1.注释风格JavaDoc风格123/** * @brief this is a javadoc style">
+<meta name="keywords" content="编码规范 工程文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用 Doxygen生成工程文档">
+<meta property="og:url" content="http://yoursite.com/2020/08/03/doxygen学习/index.html">
+<meta property="og:site_name" content="Recorder">
+<meta property="og:description" content="Doxygen代码注释规范[TOC] Doxygen使用场景Doxygen是一个用来生成代码文档的辅助工具，依据Doxygen语法规范编写代码注释不仅可以规范代码编写格式，并且生成的代码文档能够提高代码的阅读效率，减少软件工程师的沟通成本，在工作交接中也能快速进行。 Doxygen注释语法1.注释风格JavaDoc风格123/** * @brief this is a javadoc style">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-03T09:53:12.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用 Doxygen生成工程文档">
+<meta name="twitter:description" content="Doxygen代码注释规范[TOC] Doxygen使用场景Doxygen是一个用来生成代码文档的辅助工具，依据Doxygen语法规范编写代码注释不仅可以规范代码编写格式，并且生成的代码文档能够提高代码的阅读效率，减少软件工程师的沟通成本，在工作交接中也能快速进行。 Doxygen注释语法1.注释风格JavaDoc风格123/** * @brief this is a javadoc style">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/03/doxygen学习/">
+
+
+
+
+
+  <title>利用 Doxygen生成工程文档 | Recorder</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Recorder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/03/doxygen学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wu Rendi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Recorder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">利用 Doxygen生成工程文档</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-03T16:56:46+08:00">
+                2020-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Doxygen代码注释规范"><a href="#Doxygen代码注释规范" class="headerlink" title="Doxygen代码注释规范"></a>Doxygen代码注释规范</h1><p>[TOC]</p>
+<h2 id="Doxygen使用场景"><a href="#Doxygen使用场景" class="headerlink" title="Doxygen使用场景"></a>Doxygen使用场景</h2><p>Doxygen是一个用来生成代码文档的辅助工具，依据Doxygen语法规范编写代码注释不仅可以规范代码编写格式，并且生成的代码文档能够提高代码的阅读效率，减少软件工程师的沟通成本，在工作交接中也能快速进行。</p>
+<h2 id="Doxygen注释语法"><a href="#Doxygen注释语法" class="headerlink" title="Doxygen注释语法"></a>Doxygen注释语法</h2><h3 id="1-注释风格"><a href="#1-注释风格" class="headerlink" title="1.注释风格"></a>1.注释风格</h3><h4 id="JavaDoc风格"><a href="#JavaDoc风格" class="headerlink" title="JavaDoc风格"></a>JavaDoc风格</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @brief this is a javadoc style comment1.</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+<h4 id="Qt风格"><a href="#Qt风格" class="headerlink" title="Qt风格"></a>Qt风格</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*!</span><br><span class="line"> * @brief this is a Qt style comment.</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+<h4 id="third-style"><a href="#third-style" class="headerlink" title="third style"></a>third style</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">///</span><br><span class="line">/// @brief this is a third style comment1.</span><br><span class="line">///</span><br><span class="line"> </span><br><span class="line">//!</span><br><span class="line">//! @brief this is a third style comment2.</span><br><span class="line">//!</span><br></pre></td></tr></table></figure>
+<h3 id="2-注释层级从高级到细节"><a href="#2-注释层级从高级到细节" class="headerlink" title="2.注释层级从高级到细节"></a>2.注释层级从高级到细节</h3><p>先从文件开始注释，然后是所在文件的全局函数、结构体、枚举变量、命名空间→命名空间中的类→成员函数和成员变量。</p>
+<h4 id="文件头注释"><a href="#文件头注释" class="headerlink" title="文件头注释"></a>文件头注释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/** @file [file‐name]</span><br><span class="line">* @brief brief description</span><br><span class="line">* @author &lt;list of authors&gt;</span><br><span class="line">* [@author &lt;authors description&gt;]</span><br><span class="line">* @date &lt;date&gt;</span><br><span class="line">* @version &lt;version number&gt;</span><br><span class="line">* @note</span><br><span class="line">* detailed description</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p><u><strong>[]表示可选，{}表示重复0到N次，&lt;&gt;表示必须参数</strong></u></p>
+<h4 id="类注释"><a href="#类注释" class="headerlink" title="类注释"></a>类注释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* @class &lt;class‐name&gt; [header‐file] [&lt;header‐name]</span><br><span class="line">* @brief brief description</span><br><span class="line">* @author &lt;list of authors&gt;</span><br><span class="line">* @note</span><br><span class="line">* detailed description</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>header‐file是类声明所在的头文件名字，header‐name是要显示的链接文字，一般为头文件的真实路径在include<xx>中显示。</xx></p>
+<h4 id="函数注释"><a href="#函数注释" class="headerlink" title="函数注释"></a>函数注释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* @brief brief description</span><br><span class="line">* @author &lt;list of authors&gt;</span><br><span class="line">* &#123;@param[in|out] &lt;parameter‐name&gt; &lt;parameter description&gt;&#125;</span><br><span class="line">* @exception &lt;exception‐object&gt; &lt;exception description&gt;</span><br><span class="line">* &#123;@exception &lt;exception‐object&gt; &lt;exception description&gt;&#125;</span><br><span class="line">* @return &lt;description of the return value&gt;</span><br><span class="line">* &#123;@return &lt;description of the return value&gt;&#125;</span><br><span class="line">* @note</span><br><span class="line">* detailed description</span><br><span class="line">* @remarks &lt;remark text&gt;</span><br><span class="line">* &#123;@remarks &lt;remark text&gt;&#125;</span><br><span class="line">* [@deprecated &lt;description&gt;]</span><br><span class="line">* [@since when(time or version)]</span><br><span class="line">* [@see references&#123;,references&#125;]</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>@param[in|out]   参数名及其解释<br>@exception      用来说明异常类及抛出条件<br>@return          对函数返回值做解释<br>@note           表示注解，暴露给源码阅读者的文档<br>@remark         表示评论，暴露给客户程序员的文档<br>@since          表示从那个版本起开始有了这个函数<br>@deprecated    引起不推荐使用的警告<br>@see           表示交叉参考<br>函数的详细注释用@note代替详细注释，因为详细注释要空行隔开，容易忘记。</p>
+<h4 id="成员注释"><a href="#成员注释" class="headerlink" title="成员注释"></a>成员注释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int ro;/**&lt;旋转角度*/</span><br><span class="line">double length;///&lt;距离</span><br><span class="line">double area;///&lt;面积</span><br></pre></td></tr></table></figure>
+<h4 id="枚举类型注释"><a href="#枚举类型注释" class="headerlink" title="枚举类型注释"></a>枚举类型注释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/** @brief Another enum, with inline docs */</span><br><span class="line">enum AnotherEnum</span><br><span class="line">&#123;</span><br><span class="line">    V1,/**&lt; value 1 */</span><br><span class="line">    V2 ///&lt; value 2 </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="3-一般约定"><a href="#3-一般约定" class="headerlink" title="3.一般约定"></a>3.一般约定</h3><p>一般约定中描述了通常的注释格式，<strong>其中在功能模块之后的内容是根据单片机程序的特征进行适配的</strong>。</p>
+<h4 id="文件头注释-1"><a href="#文件头注释-1" class="headerlink" title="文件头注释"></a>文件头注释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/** @file</span><br><span class="line">* @brief brief description</span><br><span class="line">* @author &lt;list of authors&gt;</span><br><span class="line">* @date &lt;date&gt;</span><br><span class="line">* @version &lt;version number&gt;</span><br><span class="line">* @note</span><br><span class="line">* detailed description</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h4 id="类注释-1"><a href="#类注释-1" class="headerlink" title="类注释"></a>类注释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* @class</span><br><span class="line">* @brief brief description</span><br><span class="line">* @author &lt;list of authors&gt;</span><br><span class="line">* @note</span><br><span class="line">* detailed description</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h4 id="全局变量和全局宏"><a href="#全局变量和全局宏" class="headerlink" title="全局变量和全局宏"></a>全局变量和全局宏</h4><p>代码上方使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/** @brief some brief description */</span><br></pre></td></tr></table></figure>
+<p>代码右方使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">///&lt; some brief description</span><br></pre></td></tr></table></figure>
+<h4 id="函数注释-1"><a href="#函数注释-1" class="headerlink" title="函数注释"></a>函数注释</h4><p>在头文件进行简要注释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/** @brief brief description */</span><br><span class="line">int m_test(int a);</span><br></pre></td></tr></table></figure>
+<p>在实现处给出详细注释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* @brief brief description</span><br><span class="line">* @author &lt;list of authors&gt;</span><br><span class="line">* @param[in|out] &lt;parameter‐name&gt; &lt;parameter description&gt;</span><br><span class="line">* @exception &lt;exception‐object&gt; &lt;exception description&gt;</span><br><span class="line">* @return &lt;description of the return value&gt;</span><br><span class="line">* @note</span><br><span class="line">* detailed description</span><br><span class="line">* @remarks &lt;remark text&gt;</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h4 id="枚举定义"><a href="#枚举定义" class="headerlink" title="枚举定义"></a>枚举定义</h4><p>每个枚举定义必须添加注释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/** Another enum, with inline docs */</span><br><span class="line">enum AnotherEnum</span><br><span class="line">&#123;</span><br><span class="line">    V1, ///&lt; value 1</span><br><span class="line">    V2 ///&lt; value 2</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><p>在单片机中会根据硬件类型编写不同的功能模块。为了让Doxygen能正确提前模块定义，需要添加模块定义注释。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @addtogroup ADC</span><br><span class="line"> * @brief ADC driver modules</span><br><span class="line"> * @&#123;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">// 程序代码</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @&#125;</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+<h4 id="宏定义子模块"><a href="#宏定义子模块" class="headerlink" title="宏定义子模块"></a>宏定义子模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @defgroup ADC_Exported_Constants</span><br><span class="line"> * @&#123;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @defgroup ADC_JitterOff</span><br><span class="line"> * @&#123;</span><br><span class="line"> */</span><br><span class="line">#define ADC_JitterOff_PCLKDiv2    ADC_CFGR2_JITOFFDIV2</span><br><span class="line">#define ADC_JitterOff_PCLKDiv4  ADC_CFGR2_JITOFFDIV4</span><br><span class="line"></span><br><span class="line">#define IS_ADC_JITTEROFF(JITTEROFF) (((JITTEROFF) &amp; 0x3FFFFFFF) == (uint32_t)RESET)</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @&#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @defgroup ADC_Resolution</span><br><span class="line"> * @&#123;</span><br><span class="line"> */</span><br><span class="line">#define ADC_Resolution_12b    ((uint32_t)0x00000000)</span><br><span class="line">#define ADC_Resolution_10b    ADC_CFGR1_RES_0</span><br><span class="line">#define ADC_Resolution_8b    ADC_CFGR1_RES_1</span><br><span class="line">#define ADC_Resolution_6b    ADC_CFGR1_RES</span><br><span class="line"></span><br><span class="line">#define IS_ADC_RESOLUTION(RESOLUTION)    (((RESOLUTION) == ADC_Resolution_12b) || \</span><br><span class="line">                                         ((RESOLUTION) == ADC_Resolution_10b) || \</span><br><span class="line">                                         ((RESOLUTION) == ADC_Resolution_8b) || \</span><br><span class="line">                                         ((RESOLUTION) == ADC_Resolution_6b))</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @&#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @&#125;</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+<p>以上代码段中定义了一个名为<code>ADC_Exported_Constants</code>的模块，此模块中包含了ADC模块中所有的宏定义。</p>
+<p>在<code>ADC_Exported_Constants</code>模块中，又有若干个子模块，如<code>ADC_JitterOff</code>、<code>ADC_Resolution</code>等。</p>
+<p>这样组织代码可以让大量的宏定义结构更为清晰，而且有利于在其他地方进行交叉引用。</p>
+<h4 id="函数子模块"><a href="#函数子模块" class="headerlink" title="函数子模块"></a>函数子模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @defgroup ADC_Private_Functions</span><br><span class="line"> * @&#123;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @defgroup ADC_Group1 Initialization and Configuration functions</span><br><span class="line"> * @brief Initialization and Configuration functions</span><br><span class="line"> *</span><br><span class="line"> * @&#123;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">void ADC_DeInit(ADC_TypeDef* ADCx)&#123;&#125;</span><br><span class="line">void ADC_Init(ADC_TypeDef* ADCx,ADC_InitTypeDef* ADC_InitStruct)&#123;&#125;</span><br><span class="line">void ADC_StructInit(ADC_InitTypeDef* ADC_InitStruct)&#123;&#125;</span><br><span class="line">/**</span><br><span class="line"> * @&#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @defgroup ADC_Group2 Power saving functions</span><br><span class="line"> * @brief      Power saving function</span><br><span class="line"> * @&#123;</span><br><span class="line"> */</span><br><span class="line">void ADC_AutoPowerOffCmd(ADC_TypeDef* ADCx,FunctionalState NewState)&#123;&#125;</span><br><span class="line">void ADC_WaitModeCmd(ADC_TypeDef* ADCx,FunctionalState NewState)&#123;&#125;</span><br><span class="line">/**</span><br><span class="line"> * @&#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @&#125;</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+<p>以上代码在实际代码的基础上进行了精简，仅保留了进行模块定义的基本结构。代码段中定义了一个名为<code>ADC_Private_Functions</code>的模块，此模块中包含了所有的函数定义，并且各函数按用途进行了分组，分为若干个子模块，如<code>Initialzation and Configuration Functions</code>、<code>Power saving functions</code>等。</p>
+<h4 id="结构体注释"><a href="#结构体注释" class="headerlink" title="结构体注释"></a>结构体注释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line">  * @brief  ADC Init structure definition</span><br><span class="line">  */</span><br><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">  /*!&lt; Selects the resolution of the conversion.</span><br><span class="line">       This parameter can be a value of @ref ADC_Resolution */</span><br><span class="line">  uint32_t ADC_Resolution;                  </span><br><span class="line"></span><br><span class="line">  /*!&lt; Specifies whether the conversion is performed in</span><br><span class="line">       Continuous or Single mode.</span><br><span class="line">       This parameter can be set to ENABLE or DISABLE. */</span><br><span class="line">  FunctionalState ADC_ContinuousConvMode;   </span><br><span class="line"></span><br><span class="line">  /*!&lt; Selects the external trigger Edge and enables the</span><br><span class="line">       trigger of a regular group. This parameter can be a value</span><br><span class="line">       of @ref ADC_external_trigger_edge_conversion */</span><br><span class="line">  uint32_t ADC_ExternalTrigConvEdge;        </span><br><span class="line"></span><br><span class="line">  /*!&lt; Defines the external trigger used to start the analog</span><br><span class="line">       to digital conversion of regular channels. This parameter</span><br><span class="line">       can be a value of @ref ADC_external_trigger_sources_for_channels_conversion */</span><br><span class="line">  uint32_t ADC_ExternalTrigConv; </span><br><span class="line"></span><br><span class="line">  /*!&lt; Specifies whether the ADC data alignment is left or right.</span><br><span class="line">       This parameter can be a value of @ref ADC_data_align */</span><br><span class="line">  uint32_t ADC_DataAlign;                   </span><br><span class="line"></span><br><span class="line">  /*!&lt; Specifies in which direction the channels will be scanned</span><br><span class="line">       in the sequence. </span><br><span class="line">       This parameter can be a value of @ref ADC_Scan_Direction */</span><br><span class="line">  uint32_t  ADC_ScanDirection;              </span><br><span class="line">&#125;ADC_InitTypeDef;</span><br></pre></td></tr></table></figure>
+<p>此代码段中对<code>ADC_InitTypeDef</code>这个结构体进行了较为详尽的注释，开头使用<code>@brief</code>说明此结构体的主要功能，之后对结构体中每个成员的意义进行了注释。使用<code>/*!&lt; Comment */</code>这样的语法表示此注释对应的是注释前面的语句，这样可以使代码的排版更为美观。</p>
+<p>另外，注意到其中<code>@ref</code>标签的使用，这代表交叉应用，如<code>@ref ADC_Resolution</code>，实际会生成一个超链接指向之前定义的<code>ADC_Resolution</code>模块。这里的交叉引用可以是模块名、函数名、结构体等。</p>
+<h4 id="Todo和Bug列表"><a href="#Todo和Bug列表" class="headerlink" title="Todo和Bug列表"></a>Todo和Bug列表</h4><p>使用<code>@todo</code>和<code>@bug</code>标签列出待办事项和BUG，Doxygen会在生成文档时候自动汇总为Todo与Bug列表。</p>
+<h2 id="Doxygen编辑插件"><a href="#Doxygen编辑插件" class="headerlink" title="Doxygen编辑插件"></a>Doxygen编辑插件</h2><p>在实际编程中，可以使用辅助插件生成注释模板。</p>
+<h3 id="Keil中使用"><a href="#Keil中使用" class="headerlink" title="Keil中使用"></a>Keil中使用</h3><p>Keil中可以使用Template功能使得在写函数时生成预设的注释文本，不过依然不方便，不建议这么使用。</p>
+<p>实现方法为：</p>
+<ol>
+<li><p>打开Edit菜单中的Configuration项</p>
+</li>
+<li><p>切换到Text Compilation栏，修改void模板：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* @brief a short description of what the function does</span><br><span class="line">* @param the first input value</span><br><span class="line">* @return the return value</span><br><span class="line"></span><br><span class="line">* @details a full description of what the function does</span><br><span class="line">* @see a reference to another function</span><br><span class="line">*/</span><br><span class="line">void |()&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>|</code>代表模板生成后光标所在的位置</p>
+</li>
+</ol>
+<h3 id="VScode插件"><a href="#VScode插件" class="headerlink" title="VScode插件"></a>VScode插件</h3><p>VScode的插件支持非常强大，对Doxygen的支持很强，建议使用。</p>
+<h4 id="1-插件安装和使用"><a href="#1-插件安装和使用" class="headerlink" title="1.插件安装和使用"></a>1.插件安装和使用</h4><p>插件搜索”Doxygen Documentation Generator”进行安装，输入<code>/**</code>+回车生成注释。可以直接看插件里面自带的教学，有动图易于学习。</p>
+<h4 id="2-注释模板修改"><a href="#2-注释模板修改" class="headerlink" title="2.注释模板修改"></a>2.注释模板修改</h4><p>打开VScode的<code>setting.json</code>，将插件文档中的Config options内容复制进去，并根据自己的需要进行修改。</p>
+<h3 id="Qt插件"><a href="#Qt插件" class="headerlink" title="Qt插件"></a>Qt插件</h3><p>Qt编辑器默认支持Doxygen，在输入<code>/**</code>+回车生成注释。</p>
+<h2 id="Doxygen使用流程"><a href="#Doxygen使用流程" class="headerlink" title="Doxygen使用流程"></a>Doxygen使用流程</h2><p>在拥有Doxygen规范注释的工程代码之后，就可以生成工程文档。</p>
+<p>涉及到的软件有Doxygen、Graphviz、HTMLhelp（网上都可以找到）。其中Doxygen负责生成文档，Graphviz和HTMLhelp负责渲染。</p>
+<p>Doxygen的设置步骤可以参考 <a href="https://blog.csdn.net/imgcl/article/details/79480350" target="_blank" rel="noopener">Doxygen + graphviz + Windows Help Workshop生成函数调用图和chm文件</a>。</p>
+<p>或者使用我已经设置好的配置文件<code>Doxyfile</code>（C语言）。打开Doxygen之后在上方的Step1中选择此文件之后，在Project中配置好工程目录和文档输出目录，最后在切换到Run标签栏生成文档。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编码规范-工程文档/" rel="tag"># 编码规范 工程文档</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/28/hexo多端发布/" rel="next" title="hexo多端发布">
+                <i class="fa fa-chevron-left"></i> hexo多端发布
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzAxMS8xOTU1Nw=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Wu Rendi">
+          <p class="site-author-name" itemprop="name">Wu Rendi</p>
+           
+              <p class="site-description motion-element" itemprop="description">被没有技术而留下泪水淹死的咸鱼</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:wurendikunn@outlook.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+		
+		<link rel="stylesheet" href="/dist/APlayer.min.css">
+		<div id="aplayer"></div>
+		<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+		<script type="text/javascript" src="/dist/music.js"></script>
+		
+
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Doxygen代码注释规范"><span class="nav-text">Doxygen代码注释规范</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Doxygen使用场景"><span class="nav-text">Doxygen使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Doxygen注释语法"><span class="nav-text">Doxygen注释语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-注释风格"><span class="nav-text">1.注释风格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaDoc风格"><span class="nav-text">JavaDoc风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Qt风格"><span class="nav-text">Qt风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#third-style"><span class="nav-text">third style</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-注释层级从高级到细节"><span class="nav-text">2.注释层级从高级到细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件头注释"><span class="nav-text">文件头注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类注释"><span class="nav-text">类注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数注释"><span class="nav-text">函数注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#成员注释"><span class="nav-text">成员注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#枚举类型注释"><span class="nav-text">枚举类型注释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-一般约定"><span class="nav-text">3.一般约定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件头注释-1"><span class="nav-text">文件头注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类注释-1"><span class="nav-text">类注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局变量和全局宏"><span class="nav-text">全局变量和全局宏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数注释-1"><span class="nav-text">函数注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#枚举定义"><span class="nav-text">枚举定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能模块"><span class="nav-text">功能模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宏定义子模块"><span class="nav-text">宏定义子模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数子模块"><span class="nav-text">函数子模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结构体注释"><span class="nav-text">结构体注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Todo和Bug列表"><span class="nav-text">Todo和Bug列表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Doxygen编辑插件"><span class="nav-text">Doxygen编辑插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Keil中使用"><span class="nav-text">Keil中使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VScode插件"><span class="nav-text">VScode插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-插件安装和使用"><span class="nav-text">1.插件安装和使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-注释模板修改"><span class="nav-text">2.注释模板修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Qt插件"><span class="nav-text">Qt插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Doxygen使用流程"><span class="nav-text">Doxygen使用流程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+	  
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wu Rendi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>
